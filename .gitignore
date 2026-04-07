@@ -1,0 +1,10 @@
+# all secret keys
+backend/.env
+
+# python venv
+backend/venv/
+
+# cache
+__pycache__/
+*.pyc
+.DS_Store
