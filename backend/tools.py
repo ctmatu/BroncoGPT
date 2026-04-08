@@ -117,7 +117,7 @@ def corpus_search(query: str) -> dict:
         })
 
     results.sort(key=lambda x: x["score"], reverse=True)
-    top = results[:3]
+    top = results[:5]
 
     for r in top:
         del r["score"]
