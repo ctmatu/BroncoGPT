@@ -8,3 +8,7 @@ backend/venv/
 __pycache__/
 *.pyc
 .DS_Store
+
+# corpus folders
+itc2026_ai_corpus/
+corpus_cleaned/
