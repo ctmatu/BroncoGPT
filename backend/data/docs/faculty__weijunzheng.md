@@ -1,0 +1,57 @@
+# Weijun Zheng
+
+Assistant Professor
+
+Computer Information Systems, College of Business Administration
+
+## Email
+
+weijunzheng@cpp.edu
+
+## Phone number
+
+xxx.xxx.xxxx
+
+## Office location
+
+[Building 164 - 3014](https://www.cpp.edu/maps/?id=1130#!m/276433)
+
+## Office hours
+
+M W F | 9 AM - 11:30 AM
+
+* [About Me](index.shtml)
+* [Education](education.shtml)
+* [Teaching](teaching.shtml)
+
+## Bio
+
+Professor Zheng holds a PhD in Management Information Systems focusing from University of Oklahoma. He was an associate professor at University of Wisconsin Parkside before he moved to CPP. Dr. Zheng is a certified information system Auditor (CISA) and had years of industry experiences among Fortune 500 companies. He has taught cybersecurity classes at both undergraduate and graduate levels and was also a faculty advisor for student clubs at CPP.
+Dr. Zheng’s research interests include IT investment and business value, human affection and IT signaling, IS management and strategy etc. He has published in premier information system journals including MIS Quarterly, MIS Quarterly Executive, and Journal of Association for Information Systems, IEEE Transaction on Engineering Management, Journal of Computer Information Systems, Information Resources Management Journal, Information Systems and e-Business Management (ISeB) etc. He is currently an Editor Board Member at Journal of Information Systems Education and a Co-PI of NSF Award 2434925: HSI:ELPSE Enhancing Cybersecurity Education through Real-World Security Operations Training.
+
+## Related Links
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

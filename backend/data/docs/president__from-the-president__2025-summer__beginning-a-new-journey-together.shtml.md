@@ -1,0 +1,58 @@
+# Beginning a New Journey Together
+
+## July 28, 2025
+
+Dear Bronco Family,
+
+I’m honored to return to Cal Poly Pomona and serve as Interim President beginning today. As you can imagine, I am filled with gratitude, excitement and a sincere desire to serve this university — a university that has helped shape much of my professional and personal journey, and a university that I love with my whole heart. And that love, and my earnest desire to build better futures for all those who call CPP home, will inform and guide my leadership.
+
+I recognize the challenges we face and look forward to connecting with you further to deepen my understanding of the needs of our community. While so much has changed since I left CPP in 2022, the one constant of which I am certain is the talent and dedication of our faculty and staff and how much they give of themselves to ensure our students reach their dreams of success.
+
+Returning to our university as interim president, after spending 32 years on this campus as a professor, dean and provost, is an honor I embrace with humility and deep commitment.
+
+As we begin this chapter together, I do so with a steadfast belief in the power of collaboration, transparency and shared purpose. Our strength lies in our people. Our faculty and staff are the foundation of our success, and I am eager to work in partnership with them across divisions, disciplines and communities.
+
+My priorities in the weeks ahead are rooted in listening and learning. I look forward to engaging in open dialogue with you and gaining deeper insight into the aspirations and concerns that will shape our future. I am especially committed to upholding our Principles of Community and our strong tradition of shared governance, both of which are essential to a thriving academic environment.
+
+To our students, you are the heart of this university. Every decision we make will be to support your success, your sense of belonging, and your ability to dream big and achieve more.
+
+Thank you all for the warm welcome. I am honored to rejoin the Cal Poly Pomona family and am confident that, together, we will continue to move forward with vision, integrity and purpose.
+
+With appreciation and anticipation,
+
+Dr. Iris S. Levine
+Interim President
+
+## Office of the President
+
+### Follow Us:
+
+[Instagram opens a new window
+![Instagram](/common/green-and-gold/assets/icons/social/insta-reverse.svg)](https://www.instagram.com/prescoleycpp/)
+[X opens a new window
+![X](/common/green-and-gold/assets/icons/social/x-reverse.svg)](https://x.com/PresColeyCPP)
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

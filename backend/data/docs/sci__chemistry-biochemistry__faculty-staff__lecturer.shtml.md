@@ -1,0 +1,182 @@
+# Lecturer Faculty
+
+![](../img/faculty/male-silhouette400x400.png)
+
+## Jay Barry
+
+* phone number or extensionx 3678
+* office location3-2105
+* email addressjabarry
+
+![](../moises-bravo-400x400.jpg)
+
+## Dr. Moises Bravo
+
+* phone number or extensionx 2595
+* office location8-322
+* email addressmoisesbravo
+
+![](../img/faculty/male-silhouette400x400.png)
+
+## Julian Chavez
+
+* phone number or extensionx 3671
+* office location8-326
+* email addressjulianchavez
+
+![](../img/faculty/male-silhouette400x400.png)
+
+## Justin Cortez
+
+* phone number or extensionx
+* office location98/C7-39
+* email addressjtabaycortez@cpp.edu
+
+![](../img/hanngocdang400x400.png)
+
+## Han Dang
+
+* phone number or extensionx 3657
+* office location3 -2103
+* email addresshndang
+
+![](400x400.jpg)
+
+## Dr. Ana Garcia-Alvarez
+
+* phone number or extensionx 2595
+* office location8-322
+* email addressanaalvarez
+
+![](../img/kevyngardner400x400.png)
+
+## Dr. Kevyn Gardner-Ricossa
+
+* phone number or extensionx 3659
+* office location8-334
+* email addresskdgardner
+
+![](../img/faculty/male-silhouette400x400.png)
+
+## Aaron Gaynes
+
+* email addressahgaynes
+
+![](../img/faculty/female-silhouette400x400.jpg)
+
+## Jennifer Hirakawa
+
+* phone number or extensionx 4414
+* office location8-324
+* email addressjhumphries
+
+![](../img/faculty/female-silhouette400x400.jpg)
+
+## Bronwyn Horton
+
+* phone number or extensionX 3659
+* office location8-334
+* email addressbehorton
+
+![](amy_hua_400x400.jpg)
+
+## Amy K. Hua
+
+* phone number or extensionX 2781
+* office location98-C7-37
+* email addressakhua
+
+![](../img/faculty/female-silhouette400x400.jpg)
+
+## Erica Hummel
+
+* phone number or extensionx 3671
+* office location8-326
+* email addressedhummel
+
+![](../img/al_javier400x400.png)
+
+## Dr. Alnald Javier
+
+* phone number or extensionx 3659
+* office location8-338
+* email addressajavier
+
+![](../img/faculty/male-silhouette400x400.png)
+
+## Dr. David Margolese
+
+* phone number or extensionx 3662
+* office location4/3-421
+* email addressdimargolese
+
+![](../img/faculty/female-silhouette400x400.jpg)
+
+## Kelly McCoy
+
+* phone number or extensionx 5053
+* office location4/3-417
+* email addresskbmccoy
+
+![](../img/faculty/male-silhouette400x400.png)
+
+## Zaw Naing
+
+* phone number or extensionx 3697
+* office location3-1626
+* email addressztnaing
+
+![](../img/valerie_nichols400x400.png)
+
+## Dr. Valerie Nichols
+
+* email addressvnichols
+
+![](../img/faculty/female-silhouette400x400.jpg)
+
+## Joelle Opotowsky
+
+* phone number or extensionx 4414
+* office location8-324
+* email addressjopotowsky
+
+![](../img/bryan_sullivan400x400.png)
+
+## Bryan Sullivan
+
+* phone number or extensionx 3671
+* office location8-326
+* email addressbmsullivan
+
+![](../img/faculty/male-silhouette400x400.png)
+
+## Nathan Wagner
+
+* phone number or extensionx 4414
+* office location8-324
+* email addressnwagner
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

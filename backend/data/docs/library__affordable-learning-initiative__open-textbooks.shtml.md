@@ -1,0 +1,62 @@
+# Finding Open Textbooks
+
+The costs for what has been the standard for college course materials—the printed textbook—has become a major source of expense for students, and for some, a financial barrier to college completion. Open textbooks are one part of the solution to managing the costs of learning materials for students.
+
+> *Open textbooks are offered online under an open-source license that allows free digital access, low-cost print options and customization by instructors.*
+>  —from [*A Cover to Cover Solution*, September 30, 2010](https://studentpirgs.org/campaigns/make-textbooks-affordable/).
+
+[**Affordable Learning Solutions**](http://als.csuprojects.org/open_educational_resources)  (from the CSU)
+You can search by ISBN's to find an Open Textbook related to a book. The page also includes a keyword search tool by topic for the MERLOT database, and links to textbooks in MERLOT by subject.
+
+[**MERLOT's Open Textbook Initiative**](https://www.merlot.org/merlot/viewSite.htm?id=9160704)
+MERLOT's collection has over 3,300 Open Textbooks, and it allows you to search for textbooks by subject, whereas many other sites just provide list of books, which can get unwieldy. Click on a link to your subject area and you will get a hit list of Open Textbooks in different sub-disciplines.
+
+* [Academic Support Services](https://www.merlot.org/merlot/materials.htm?category=372822 "Opens new window")
+* [Arts](https://www.merlot.org/merlot/materials.htm?category=2175 "Opens new window")
+* [Business](https://www.merlot.org/merlot/materials.htm?category=2202 "Opens new window")
+* [Education](https://www.merlot.org/merlot/materials.htm?category=2267 "Opens new window")
+* [Humanities](https://www.merlot.org/merlot/materials.htm?category=2327 "Opens new window")
+* [Mathematics and Statistics](https://www.merlot.org/merlot/materials.htm?category=2513 "Opens new window")
+* [Science and Technology](https://www.merlot.org/merlot/materials.htm?category=2605 "Opens new window")
+* [Social Sciences](https://www.merlot.org/merlot/materials.htm?category=2787 "Opens new window")
+
+[**Flat World**](http://catalog.flatworldknowledge.com)
+This commercial venture offers low-cost and *open* high quality online textbooks. *Open* means that you can edit them, adapt them, and change them for your classes. Textbooks are also available in full-color print at an additional cost.
+
+[**OpenStax CNX**](http://cnx.org)
+Rice University's Openstax CNX (formerly Connexions) is a repository of open materials. Their list of other sources includes the [College Open Textbook group](https://collegeopentextbooks.org/) and the [OER Commons Textbooks,](https://www.oercommons.org/oer) which are worth looking at.
+
+[**OpenStax College**](https://www.openstaxcollege.org/faculty)
+OpenStax College provides your students with *professional-quality* textbooks that are *free* online and low-cost in print. The books are peer-reviewed and backed by quality supporting materials. The books are also customizable. Review a textbook to get started.
+
+[**Free to Learn Guide**](http://wiki.creativecommons.org/Free_to_Learn_Guide)
+Open Educational Resources (OER) offer a solution to reducing costs imposed on students related to the purchase of expensive commercial textbooks and learning materials. Leading scholars around the world are participating in the OER movement. This resource includes an excellent index to other [OER resources](http://wiki.creativecommons.org/Free_to_Learn_Guide/Index_of_OER_Resources).
+
+### [Library Guide: OER](http://libguides.library.cpp.edu/oer)
+
+View the University's Library Guide on Open Educational Resources (OER).
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)
