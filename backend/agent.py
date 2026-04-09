@@ -1,15 +1,19 @@
 import os
-from google import genai
-from google.genai import types
+from openai import OpenAI
 from dotenv import load_dotenv
 from tools import corpus_search, CORPUS_SEARCH_TOOL
+import json
 
 load_dotenv()
 
-client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-MODEL = "gemini-2.0-flash"
+client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key=os.environ["OPENROUTER_API_KEY"]
+)
 
-SYSTEM_PROMPT = """You are BroncoGPT, the official AI assistant for Cal Poly Pomona (CPP).
+MODEL = "openrouter/auto"
+
+SYSTEM_PROMPT = """You are BroncoAI, the official AI assistant for Cal Poly Pomona (CPP).
 Your job is to help students find accurate, helpful information about the university.
 
 Rules:
@@ -20,72 +24,67 @@ Rules:
 - When citing information, mention the source page so students can verify.
 """
 
+TOOLS = [
+    {
+        "type": "function",
+        "function": {
+            "name": CORPUS_SEARCH_TOOL["name"],
+            "description": CORPUS_SEARCH_TOOL["description"],
+            "parameters": CORPUS_SEARCH_TOOL["parameters"]
+        }
+    }
+]
+
 def run_agent(user_message: str, history: list) -> dict:
     """
     Run one turn of the agent.
     Returns { reply: str, sources: list }
     """
 
-    messages = []
+    # Build messages array
+    messages = [{"role": "system", "content": SYSTEM_PROMPT}]
     for turn in history[:-1]:
-        messages.append({
-            "role": turn["role"],
-            "parts": [{"text": turn["content"]}]
-        })
-    messages.append({
-        "role": "user",
-        "parts": [{"text": user_message}]
-    })
+        messages.append({"role": turn["role"], "content": turn["content"]})
+    messages.append({"role": "user", "content": user_message})
 
-    tools = types.Tool(function_declarations=[CORPUS_SEARCH_TOOL])
     sources = []
 
-    # --- First call: LLM decides whether to use a tool ---
-    response = client.models.generate_content(
+    # First call — LLM decides whether to use a tool
+    response = client.chat.completions.create(
         model=MODEL,
-        contents=messages,
-        config=types.GenerateContentConfig(
-            system_instruction=SYSTEM_PROMPT,
-            tools=[tools],
-        )
+        messages=messages,
+        tools=TOOLS,
+        tool_choice="auto"
     )
 
-    candidate = response.candidates[0].content
+    msg = response.choices[0].message
 
-    # --- Check if model wants to call a tool ---
-    tool_call = None
-    for part in candidate.parts:
-        if hasattr(part, "function_call") and part.function_call:
-            tool_call = part.function_call
-            break
+    # Check if model wants to call a tool
+    if msg.tool_calls:
+        tool_call = msg.tool_calls[0]
+        args = json.loads(tool_call.function.arguments)
+        query = args.get("query", user_message)
 
-    if tool_call and tool_call.name == "corpus_search":
-        query = tool_call.args.get("query", user_message)
-
+        # Execute the tool
         tool_result = corpus_search(query)
         sources = tool_result.get("results", [])
 
-        messages.append({"role": "model", "parts": candidate.parts})
+        # Add assistant message + tool result to history
+        messages.append(msg)
         messages.append({
-            "role": "user",
-            "parts": [types.Part(
-                function_response=types.FunctionResponse(
-                    name="corpus_search",
-                    response=tool_result
-                )
-            )]
+            "role": "tool",
+            "tool_call_id": tool_call.id,
+            "content": json.dumps(tool_result)
         })
 
-        final_response = client.models.generate_content(
+        # Second call — generate final grounded answer
+        final_response = client.chat.completions.create(
             model=MODEL,
-            contents=messages,
-            config=types.GenerateContentConfig(
-                system_instruction=SYSTEM_PROMPT,
-            )
+            messages=messages,
         )
-        reply = final_response.text
+        reply = final_response.choices[0].message.content
 
     else:
-        reply = response.text
+        reply = msg.content
 
     return {"reply": reply, "sources": sources}
