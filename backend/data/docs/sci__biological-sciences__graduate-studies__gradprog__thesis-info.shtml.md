@@ -1,0 +1,65 @@
+# Written Thesis FAQs
+
+Expand/Collapse All for faq number 1
+
+## What should the format of my thesis be?
+
+Format of graduate theses is determined by:
+
+1. The [University Library](http://www.cpp.edu/~library/) has [thesis regulations](https://libguides.library.cpp.edu/Libraryformatreview) which must be followed. These regulations deal with such things as the margins, table of contents, etc.
+2. Your major professor and thesis committee will determine all other aspects of style and format. Be sure to discuss style and format with your major professor before you begin writing. The Biological Sciences Department Graduate Program does not have any regulations or policy with respect to thesis style or format.
+3. You should be familiar with the CSE style manual:
+
+* ***Scientific Style and Format: The CSE Manual for Authors, Editors, and Publishers, Eighth Ed.*** Council of Science Editors: 2014.
+* The manual is a helpful reference while preparing your thesis, and the thesis editor at the Library may ask you about the style manual you used for your thesis.
+
+## How long does it take to write the thesis?
+
+A lot longer than you think it will take. A thesis is much more complicated than a term paper. Writing your thesis requires familiarity with the relevant literature, data analysis, and substantial integration and synthesis. Plan at least 6 months to write the thesis.
+
+## When should my committee see the thesis?
+
+Discuss this with your major professor and follow their instructions. Here are a few things to keep in mind. Although it's your thesis, anything you do is considered to be a product of your major professor's laboratory. If you distribute a poorly developed thesis to your committee, it not only reflects badly on you, but also on your major professor. Your committee members may wonder why your major professor is allowing low quality work to come out of the lab. If you distribute your thesis to your committee without the approval of your major professor, you may embarrass both yourself and your major professor. Embarrassing your major professor just before your thesis defense is usually not a good idea.
+
+A sample timeline might be as follows:
+
+1. Have a complete draft (all sections completed) of your thesis to your major professor in the first week or two of the semester in which you wish to graduate. Be prepared to go through two or three rounds of revisions with your major professor. This can take 4 to 6 weeks.
+2. When your major professor approves, distribute copies to your committee. Allow 1 to 2 weeks for them to review. Usually the committee won't review the thesis as thoroughly or require as many revisions as your major professor. When your professor and your committee agree, you can then schedule your thesis defense.
+3. For students who have completed a [Thesis Timeline](ma-project-and-thesis-timeline_2021.docx) in consultation with their major professor, refer to the timeline for written thesis deadlines.
+
+## Should I ask my major professor or thesis committee to review sections of the thesis separately?
+
+Discuss this with your professor. You might be thinking it's a good idea to have your professor (and/or committee) review individual sections to know if you're "on the right track." They may be willing to do this, but you need to realize that a key feature of a thesis (or any scientific paper) is that the sections (Introduction, Methods and Materials, Results, Discussion) are properly linked and flow into one another. What may seem acceptable as a stand-alone section may become quite unacceptable as part of the entire thesis.
+
+## How do I turn in my thesis?
+
+Refer to the Graduate Studies [checklist](https://www.cpp.edu/gradstudies/steps-towards-completing-your-thesis-or-project.shtml) and follow the [library instructions](https://libguides.library.cpp.edu/Libraryformatreview) for completing the thesis and obtaining signatures. Once the thesis is approved by your committee and the library you should submit the thesis to [Bronco Scholar Works](https://cpp.formstack.com/forms/etd_submissions).
+
+## When is the due date for turning in my thesis? Where do I turn it in?
+
+The due date is usually around finals week, but varies for each semester. Be sure to review the [Thesis/Project Guidelines](https://www.cpp.edu/academic-programs/graduate-studies/project-thesis-guidelines/index.shtml) provided by the [University Office of Graduate Studies](https://www.cpp.edu/~academic-programs/graduate-studies/). The [Thesis/Project Guidelines](https://www.cpp.edu/~academic-programs/graduate-studies/project-thesis-guidelines/index.shtml) page has deadlines and much additional critical information. The University Graduate Studies Office is located at 1 - 229; the phone number is 909-869-3331.
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

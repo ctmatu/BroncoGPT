@@ -1,0 +1,55 @@
+# About Us
+
+![collage of top view of Agriscapes, girl with 2 llamas, girl next to a tree, man picking grapes, boy doing presentation](img/about-us-collage.jpg)
+
+## About Us We've Come A Long Way Since 2001!
+
+AGRIscapes was created in 2001 as an Educational Outreach branch of the Don B. Huntley College of Agriculture at Cal Poly Pomona. Located West of the main campus on Temple Avenue, AGRIscapes occupies 20 acres of farmland and facilities. Included are the Visitor Center with space available for meetings, workshops and small conferences, The Farm Store at Kellogg Ranch which sells produce grown on campus along with other food items and a large greenhouse complex used for production and research. Each year AGRIscapes hosts thousands of school children on field trips to our Children’s Garden and Petting Farm along with tours of the Center
+
+Contact Us
+
+[Join Our Mailing List](https://lp.constantcontactpages.com/sl/w6e8Zdm)
+
+Stay Up to Date on Events at AGRIscapes
+
+**CONTACTS:**
+**Rebecca Smith
+Dina Lopez** **Phone**: 909-869-6722
+ **Email**: kelloggranch@cpp.edu
+
+![AGRIscapes Cal Poly Pomona. Huntley College of Agriculture](https://www.cpp.edu/agriscapes/img/agriscapes-logo.png)
+
+![Connect With Us](https://www.cpp.edu/agriscapes/img/connect-with-us.png)
+
+[![Facebook logo](https://www.cpp.edu/agriscapes/img/fb.png)](https://www.facebook.com/cppdiscoveryfarm/)
+
+[![Instagram logo](https://www.cpp.edu/agriscapes/img/instagram.png)](https://www.instagram.com/cppagriscapes/)
+
+[![Twitter Logo](https://www.cpp.edu/agriscapes/img/twitter.png)](https://twitter.com/CPPAgriscapes)
+
+AGRIscapes at Cal Poly Pomona 4102 South University Drive, Pomona, CA 91768 | [DRIVING DIRECTIONS](https://www.cpp.edu/agriscapes/directions.shtml) | [EVENTS](https://www.cpp.edu/agriscapes/calendar.shtml) | [FIELD TRIPS/TOURS](https://www.cpp.edu/agriscapes/field-trips/field-trips.shtml) | [WORKSHOPS/CLASSES](https://www.cpp.edu/agriscapes/workshops.shtml)
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

@@ -1,0 +1,36 @@
+# Library, Police Department Fire Sprinklers to Undergo Maintenance Starting on Monday, March 30
+
+**Summary of disruption:** The fire sprinkler systems in the University Library (Building 15) and Police and Parking Services (Building 109) will undergo maintenance work for four days starting on Monday, March 30. Maintenance work is also scheduled from April 1 to April 3. The work will be performed from 8 a.m. to 4:30 p.m. each day. Fire alarms and strobe lights might be activated intermittently.
+
+**Reason for disruption:** Allow contractor crews to perform maintenance on the sprinkler systems in each building.
+
+**How does this affect me?**Horns and flashing strobe lights may be activated intermittently during the maintenance work.
+
+**What do I need to do?** Please share this information with others who may have not received this message.
+
+**For any questions or more information, please contact:**Facilities Customer Service at Ext. 3030.
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

@@ -1,0 +1,63 @@
+# UC Irvine Law School Campus Visit
+
+![flyer](../img/events/uc-irvine-law-school-campus-visit.png)Join CPP PreLaw Pathways for an in-person campus visit to UC Irvine School of Law. This is a great opportunity to explore the campus, learn about the student experience, and connect directly with current law students.
+
+### Date and Time
+
+Friday, February 27
+11:00 am to 1:30 pm
+
+### Location
+
+UC Irvine School of Law
+Irvine, CA
+
+###
+
+### What to Expect
+
+* Guided campus tour
+* Conversation with current UCI Law students
+* Overview of academic programs and student life
+* Opportunity to ask questions about admissions and law school preparation
+
+### Who Should Attend
+
+* Pre-law students considering applying to law school
+* Students interested in learning more about UCI Law
+* Anyone exploring law school options in California
+
+### Registration Information
+
+Space is limited to 40 students. Registration is required and available on a first-come, first-served basis.
+
+Sign up using the QR code on the flyer or through the provided registration link.
+
+### Questions
+
+For more information, contact: pahankin@cpp.edu
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

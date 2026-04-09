@@ -1,0 +1,93 @@
+# Freshman Students
+
+![Student on Bridge](../img/website1)
+
+## Campus Impaction
+
+"Campus Impaction" or “Level Impaction” means a campus has reached capacity for instruction and support resources and cannot admit all qualified applicants. Cal Poly Pomona is impacted for First-Time Freshmen and gives admission priority to students from its local area. Others may face higher standards for impacted or high-demand programs.
+
+[Local Area Preference](local-area.shtml)
+
+![Students on Stairs](../img/students-stairs.jpg)
+
+## Program Impaction
+
+"Program Impaction" occurs when more students apply to a major than the program can accommodate. Cal Poly Pomona currently has 18 impacted programs at the First-Time Freshman level. Applicants to these majors are held to higher admission standards based on available space.
+
+![Bronco Group Pic](../img/bronco-group-pic.jpg)
+
+## Local Area Preference
+
+First-Time Freshman applicants to impacted majors receive "Local Preference" based on Cal Poly Pomona’s local area designation. Local applicants get an eligibility index bump, and all veterans receive the same preference regardless of their institution. For more details, visit our Local Preference page.
+
+[Local Area Preference](local-area.shtml)
+
+## Impacted Majors
+
+### Agriculture
+
+* Animal Health Science
+* Animal Science (General)
+* Animal Science (Pre-Vet)
+
+### Business Administration
+
+* Accounting
+
+### Engineering
+
+* Aerospace Engineering
+* Civil Engineering
+* Computer Engineering
+* Electrical Engineering
+* Mechanical Engineering
+
+### Environmental Design
+
+* Architecture
+
+### Letters, Arts & Social Sciences
+
+* Psychology
+
+### Science
+
+* Biology
+* Biotechnology
+* Environmental Biology
+* Chemistry
+* Computer Science
+* Kinesiology (General)
+* Physics
+
+## Admissions
+
+### Follow Us:
+
+[Instagram opens a new window
+![Instagram](/common/green-and-gold/assets/icons/social/insta-reverse.svg)](https://www.instagram.com/cpp.enrollmentservices/)
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

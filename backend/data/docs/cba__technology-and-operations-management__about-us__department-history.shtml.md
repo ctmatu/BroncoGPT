@@ -1,0 +1,62 @@
+# Department History
+
+The Technology and Operations Management and E-Business Department at Cal Poly Pomona operates under the College of Business Administration. It has a rich history and was established to prepare students for careers in various operational and technological fields.
+
+![The College of Business Administration, located south of the W.K. Kellogg Rose Garden in the lower left quadrant of the image.](../img/department-history-kellogg-west.jpg)
+
+The College of Business Administration, located south of the W.K. Kellogg Rose Garden in the lower left quadrant of the image.
+
+## History Timelines
+
+* 1955: The Department of Business Management was established.
+
+* 1982-1983: Renamed to the Department of Operations Management
+
+* 1998-1999: Evolved into the Department of Technology and Operations Management (TOM)
+
+* 2004-2005: Expanded to include E-Business, merging it with TOM
+
+## **Technology-Driven Operations Leadership**
+
+In an era where effective management of technology and operations is crucial, the department is dedicated to equipping students with essential skills and knowledge. Our programs emphasize key areas vital to today’s business environment, including Supply Chain Management, Operations Management,  E-Business Technology, and E-Business Supply Chain Management. By combining theoretical frameworks with practical applications, students will solve problems in the real-world and drive innovation in their careers.
+
+![Niagara Tour 2024](../img/department-history-niagara-tour.jpg)
+
+Niagara Tour in 2024
+
+Since its inception, the department has been enriched by a diverse and accomplished faculty dedicated to excellence in education and research. Our faculties bring a wealth of experience from both academic and industry, with advanced degrees related disciplines and recognized institutions.
+
+![Tom Faculty 2019-2020](../img/tom-faculty-2019-2020.jpg)
+
+With a strong history, we look forward to a promising future, fostering an environment of growth and opportunity for our students and contributing meaningfully to the fields.
+
+Please follow the links for more information about our esteemed **[Emeritus Faculty](https://www.cpp.edu/cba/technology-and-operations-management/faculty-and-staff/emeritus.shtml)** and **[Current Faculty](https://www.cpp.edu/cba/technology-and-operations-management/faculty-and-staff/index.shtml)** members.
+
+## Related Links
+
+* [Course Catalog](https://catalog.cpp.edu/preview_entity.php?catoid=61&ent_oid=5202&returnto=4882)
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

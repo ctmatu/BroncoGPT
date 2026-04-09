@@ -1,0 +1,49 @@
+# Textbooks Available as eBooks in the Library: Summer 2017
+
+Below is a list of textbooks for **Summer 2017** that are available to students for **free from the library ebook collection**. In partnership with the Bronco Bookstore, each term the Library will be providing you with a list of links to ebooks for the assigned texts that is owned by the library. In the comments column, those noted as “Single user” can only be read by one student at a time. The specific ebook collection is also noted (e.g., ebrary, EBSCO Ebooks, JSTOR ebook Collection, Safari Books Online, and Wiley Online Library), as well as information about a different edition or ISBN.
+
+For other assigned or recommended readings that may be available in the library, check [course reserves](http://reserves.calstate.edu/pomona/) by course or professor.
+
+For information on searching for ebooks, check answers to frequently asked questions about [eBooks](http://libanswers.library.cpp.edu/search/?t=0&q=ebooks).
+
+| Department | Course | Section | Professor | Author/Title | Comments |
+| --- | --- | --- | --- | --- | --- |
+| AG | 401 | E-23 | Farias, Dorothy | Paarlberg / [Food Politics](https://xerxes.calstate.edu/pomona/books/record?id=b3135186) | Single user. EBSCOhost ebooks. |
+| CIS | 491 | E-11 | Hwang, Chi | Wu, Hanqing / [Web Security: A Whitehat Perspective](https://cpp-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01CALS_ALMA51438261200002901&context=L&vid=01CALS_PUP&search_scope=01CALS_PUP&tab=books_local&lang=en_US ) | Multiple concurrent users. Safari Books Online. |
+| CIS | 491 | E-03 | Hwang, Chi | Wu, Hanqing / [Web Security: A Whitehat Perspective](https://cpp-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01CALS_ALMA51438261200002901&context=L&vid=01CALS_PUP&search_scope=01CALS_PUP&tab=books_local&lang=en_US ) | Multiple concurrent users. Safari Books Online. |
+| ETE | 312 | E-01 | Qayyum, Tariq | Deitel / [C++ How to Program](https://xerxes.calstate.edu/pomona/books/record?id=b3589138) | Different ebook - C++ How to Program: Introducing the new C++ 14 standard; Old edition; ISBN:9780134448930 |
+| ETE | 215 | E-01 | Qayyum, Tariq | Deitel / [C++ How to Program](https://xerxes.calstate.edu/pomona/books/record?id=b3589138) | Different ebook - C++ How to Program: Introducing the new C++ 14 standard; Old edition; ISBN:9780134448930 |
+| FST | 325 | E-01 | Harrison, Karoline | Shaw / [Food Safety](https://xerxes.calstate.edu/pomona/books/record?id=b2261120) | Multiple concurrent users. ProQuest Ebook Central. |
+| FST | 325 | E-02 | Harrison, Karoline | Shaw / [Food Safety](https://xerxes.calstate.edu/pomona/books/record?id=b2261120) | Multiple concurrent users. ProQuest Ebook Central. |
+| GEO | 101 | E-01 | Platt, Lorne | Meldahl / [Surf, Sand, & Stone](https://xerxes.calstate.edu/pomona/books/record?id=b3539441) | Multiple concurrent users. ProQuest Ebook Central; Single user. ebrary. Cal Poly Pomona students only. |
+| GEO | 351 | E-02 | Platt, Lorne | Meldahl / [Surf, Sand, & Stone](https://xerxes.calstate.edu/pomona/books/record?id=b3539441) | Multiple concurrent users. ProQuest Ebook Central; Single user. ebrary. Cal Poly Pomona students only. |
+| IGE | 320 | E-01 | Quinn, Dennis | Shelley / [Frankenstein](https://ebookcentral.proquest.com/lib/csupomona/detail.action?docID=3008450 ) | Multiple concurrent users. ProQuest Ebook Central. |
+| IME | 402 | E-01 | Davis, William | Aristotle / [Nicomachean Ethics](https://ebookcentral.proquest.com/lib/csupomona/detail.action?docID=472087 ) | Multiple concurrent users. ProQuest Ebook Central. |
+| IME | 402 | E-01 | Davis, William | Aristotle / [Nicomachean Ethics](https://ebookcentral.proquest.com/lib/csupomona/detail.action?docID=472087 ) | Multiple concurrent users. ProQuest Ebook Central. |
+| IME | 427 | E-01 | Anderson, Kevin | Lee / [Thermal Design](https://cpp-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01CALS_ALMA51438347200002901&context=L&vid=01CALS_PUP&search_scope=EVERYTHING&isFrbr=true&tab=everything&lang=en_US ) | Multiple concurrent users. ProQuest Ebook Central. |
+| PHL | 345 | E-01 | Cholbi, Michael | Kagan / [Death](https://cpp-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01CALS_ALMA71416763640002901&context=L&vid=01CALS_PUP&search_scope=01CALS_PUP&tab=books_local&lang=en_US ) | Multiple concurrent users. ProQuest Ebook Central;Unlimited concurrent users. JSTOR eBook collection. |
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

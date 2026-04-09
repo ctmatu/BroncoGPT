@@ -1,0 +1,81 @@
+# Resources
+
+Academic and faculty advisors play an integral role in the education abroad process for students. Many times students meet with an academic advisor and/or faculty to discuss what courses are best suited for an international experience, when is the best time to go abroad, and other questions related to education abroad. Our office provides this section of the website to equip academic advisors and faculty when advising students who are interested in education abroad.
+
+![programs](../img/sa-getting-started-program-500.jpg)
+
+## [Programs](../students/programs.shtml)
+
+CPP offers a range of program types that will suit students' academic interests.
+
+![completed checklist](../img/sa-advisor-course-aproval-500.jpg)
+
+## [Course Approval and Transcript](course-approval-transcripts.shtml)
+
+Learn about how a student's coursework abroad connects their degree requirements with Study Abroad programs.
+
+![global money](../img/sa-getting-started-costfinance.jpg)
+
+## [Cost And Financing](../students/cost-financing.shtml)
+
+We recognize that not all students can afford to study abroad anywhere in the world, however, we can help students identify a program that they can afford, and also fits their interests and academic needs.
+
+![faqs](../img/sa-faq-block.jpg)
+
+## [FAQs](../faqs1/index.shtml)
+
+Find answers to the frequently asked questions about Study Abroad at Cal Poly Pomona
+
+![student in workshop](../img/sa-advisor-workshop-500.jpg)
+
+## [Request a Presentation](../students/events-workshops.shtml)
+
+Upcoming Study Abroad Workshops & Training Sessions
+
+CEU Footer
+
+# CEU Footer
+
+---
+
+3801 W. Temple Ave.
+Bldg 1-104
+ Pomona CA 91768
+<https://www.cpp.edu/studyabroad>
+
+**Phone**: 909-869-3267 **Email** : studyabroad@cpp.edu
+ **Office Hours:**
+Monday – Friday
+8:00 AM to 5:00 PM
+
+##### Student Services:
+
+* [Travel Alerts & Warnings](https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html/)
+* [Transcripts](https://www.cpp.edu/registrar/transcripts/index.shtml)
+* [Student Health Center](https://www.cpp.edu/health/student-health-services.shtml)
+* [Financial Aid & Scholarships](https://www.cpp.edu/financial-aid/index.shtml)
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

@@ -1,0 +1,39 @@
+# Submit a Referral
+
+## Academic Senate Referral Request Form
+
+* Fill out the [online Referral Form](forms/senate-referral-request.shtml).
+* Provide all information requested in the form (incomplete referrals will be returned).
+* Print a copy of the completed form for your records, if needed.
+* Submit the form electronically by clicking on the "Submit" button.
+
+If you have any questions, contact senate@cpp.edu.
+
+Referrals will be placed on the agenda of the next meeting of the Executive Committee if submitted no less than 5 work days before the date of the meeting. Under special circumstances and whenever possible, requests to waive the deadline may be granted with an appropriate justification.
+
+[Download PDF of Referral Process Flowchart (PDF)](documents/referral_flowchart_revised.pdf)
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

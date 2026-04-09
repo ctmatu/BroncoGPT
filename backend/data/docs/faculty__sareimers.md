@@ -1,0 +1,56 @@
+# Scott A. Reimers
+
+Lecturer
+
+Urban and Regional Planning, College of Environmental Design
+
+## Email
+
+sareimers@cpp.edu
+
+## Phone number
+
+N/A
+
+## Office location
+
+[N/A](https://www.cpp.edu/maps/?id=1130#!m/276185)
+
+## Office hours
+
+W | 12 PM-1 PM (VIRTUAL)
+
+* [About Me](index.shtml)
+
+## About Me
+
+Scott is a proud alumni of Cal Poly Pomona’s Urban and Regional Planning program. He has worked in the planning field for 20 years in the communities of San Gabriel, Pasadena, and Temple City.  He currently serves as Community Development Director in Temple City, overseeing the City’s planning, building and safety, code enforcement, animal control, CDBG, parking permit, and customer reception functions.  Some of his greatest professional achievements include working on a General Plan Update in San Gabriel, Pasadena, and Temple City; preparing a comprehensive update of Temple City’s Municipal Code; writing Temple City’s Crossroads Specific Plan; and managing entitlements for Pasadena’s Ambassador West Project and Las Encinas Hospital Master Plan.  He has acted as staff to city Design Commissions and Planning Commissions.  He has also received a Master of Arts in Leadership and Organizational Studies from Azusa Pacific University.
+
+## Office Hours - Zoom Info
+
+https://cpp.zoom.us/j/86704314737
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

@@ -1,0 +1,186 @@
+# Faculty
+
+## Leadership
+
+![](../img/haakenson.png)
+
+Program Coordinator and Professor
+
+### Dr. Hilary Haakenson
+
+Interdisciplinary General Education (IGE)
+
+Phone: (909) 869-3617
+
+Location: 94-371
+
+hahaakenson@cpp.edu
+
+## Interdisciplinary General Education (IGE) Faculty
+
+![](../img/quinn_resized.jpg)
+
+Professor
+
+### Dr. Dennis Quinn
+
+Phone: (909) 869-6733
+
+Location: 94-365
+
+dquinn@cpp.edu
+
+![](../img/prof.h.revised-3-3.jpg)
+
+ASSOCIATE PROFESSOR
+
+### Dr. Hyeryung Hwang
+
+Phone: (909) 869-4278
+
+Location: 94-369
+
+hhwang@cpp.edu
+
+![](../img/antonucci.jpg)
+
+LECTURER
+
+### Dr. Anthony J. Antonucci
+
+Phone: (909) 869-3960
+
+Location: 94-203
+
+ajantonucci@cpp.edu
+
+![](../img/andrew-davis.png)
+
+LECTURER
+
+### Andrew H. Davis
+
+Phone: (909) 869-6713
+
+Location: 94-324
+
+andrewdavis@cpp.edu
+
+![](../img/faculty-staff/howard1.jpg)
+
+LECTURER
+
+### Howard Jian
+
+Phone: (909) 869-3510
+
+Location: 94-326
+
+hjian@cpp.edu
+
+![](../img/ppolk.jpg)
+
+LECTURER
+
+### Patrick A. Polk
+
+Phone: (909) 869-3583
+
+Location: 94-203
+
+papolk@cpp.edu
+
+![](../img/rietveld.png)
+
+LECTURER
+
+### James D. Rietveld
+
+Phone: (909) 869-3347
+
+Location: 94-203
+
+jdrietveld@cpp.edu
+
+![](../img/welch.png)
+
+LECTURER
+
+### Rosanne M. Welch
+
+Phone: (909) 869-2260
+
+Location: 94-211
+
+rmwelch@cpp.edu
+
+## FACULTY EMERITUS
+
+![](../img/rudicel.jpg)
+
+LECTURER EMERITUS
+
+### Stephen C. Rudicel
+
+srudicel@cpp.edu
+
+![](../img/stahl_fotor.jpg)
+
+LECTURER EMERITUS
+
+### Kenneth M. Stahl
+
+kmstahl@cpp.edu
+
+## Staff
+
+![](../img/faculty-staff/kim1.jpg)
+
+ADMINISTRATIVE SUPPORT COORDINATOR
+
+### Kimberly Deitrick
+
+Phone: (909) 869-3567
+
+Location: 94-203
+
+krdeitrick@cpp.edu
+
+Office hours:
+M-F: 8 a.m. -5 p.m
+
+## Liberal Studies
+
+### Follow Us:
+
+[Instagram opens a new window
+![Instagram](/common/green-and-gold/assets/icons/social/insta-reverse.svg)](https://www.instagram.com/liberalstudies_cpp/)
+[LinkedIn opens a new window
+![LinkedIn](/common/green-and-gold/assets/icons/social/li-reverse.svg)](https://www.linkedin.com/company/college-of-education-integrative-studies/)
+[YouTube opens a new window
+![YouTube](/common/green-and-gold/assets/icons/social/yt-reverse.svg)](https://www.youtube.com/%40CEISCPP)
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)

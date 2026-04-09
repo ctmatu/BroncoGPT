@@ -1,0 +1,68 @@
+## Slide2
+
+The Restaurant at Kellogg Ranch - view as guests enter the restaurant with the visible kitchen on the left
+
+![Described under the heading slide3 text](../img/rkr-web-banner4.jpg)
+
+## Slide3
+
+The Restaurant at Kellogg Ranch - view of one of the tables near the bar area
+
+![Described under the heading slide4 text](../img/rkr-web-banner3.jpg)
+
+## Slide4
+
+The Restaurant at Kellogg Ranch - table with stunning views overlooking the hills
+
+[Previous](#CPPCarousel)
+[Next](#CPPCarousel)
+
+The Restaurant at Kellogg Ranch
+
+* [Home](/~rkr/index.shtml)
+* [About Us](#item-1)
+
++ [About Us](/~rkr/about-us/index.shtml)
++ [Awards](/~rkr/about-us/awards.shtml)
++ [Faculty & Staff](/~rkr/about-us/faculty-staff.shtml)
++ [Students](/~rkr/about-us/students.shtml)
+
+* [Menu](https://www.cpp.edu/rkr/cuisine/menu.shtml)
+* [Sustainability](/~rkr/sustainability.shtml)
+* [Contact Us](#item-2)
+
++ [Directions](/~rkr/contact/directions.shtml)
++ [Media](/~rkr/contact/media.shtml)
+
+# Faculty & Staff
+
+The Restaurant at Kellogg Ranch is run and managed by Collins College students. RKR operates as a Cal Poly Pomona course, guided by experienced industry professionals on faculty and staff — all proud Collins College alumni.
+
+Faculty members Lesley Butler and Kenneth Dokko provide front-of-the-house instruction for both lunch and dinner classes, while Executive Chef Matthew Vaillette leads the culinary instruction.
+
+Supporting the faculty team, the culinary laboratory coordinator oversees purchasing and provides operational support for the restaurant.
+
+![Ripped green paper.](/common/green-and-gold/assets/images/green-rip.svg)
+
+[![Cal Poly Pomona logo, building with a palm tree.](/common/green-and-gold/assets/logos/cpp_primary_1c_gold_rgb.png)](https://www.cpp.edu/)
+
+[Apply](https://www.cpp.edu/apply/)
+[Maps](https://maps.cpp.edu/)
+[Visit](https://www.cpp.edu/outreach/tours.shtml)
+[Contact Us](https://www.cpp.edu/contact.shtml)
+
+[![Instagram opens a new window](/common/green-and-gold/assets/icons/social/insta.svg)](https://www.instagram.com/calpolypomona/)
+[![LinkedIn opens a new window](/common/green-and-gold/assets/icons/social/li.svg)](https://www.linkedin.com/school/cal-poly-pomona/)
+[![YouTube opens a new window](/common/green-and-gold/assets/icons/social/yt.svg)](https://www.youtube.com/user/calpolypomona)
+[![Facebook opens a new window](/common/green-and-gold/assets/icons/social/fb.svg)](https://www.facebook.com/calpolypomona)
+[![X opens a new window](/common/green-and-gold/assets/icons/social/x.svg)](https://twitter.com/calpolypomona)
+
+Copyright ©2026 California State Polytechnic University, Pomona. All Rights Reserved
+
+A campus of
+[The California State University](https://www.calstate.edu/).
+
+[Feedback](https://www.cpp.edu/website-feedback.shtml)
+[Privacy](https://calstate.policystat.com/policy/18808065/latest/#autoid-z2p98)
+[Accessibility](https://www.cpp.edu/accessibility.shtml)
+[Document Readers](https://www.cpp.edu/file-viewers.shtml)
