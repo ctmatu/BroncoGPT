@@ -110,10 +110,10 @@ async function handleSend() {
 
   showTyping()
 
-  // ---- swap this for your real API call later ----
+  // swap for real API call
   await new Promise(r => setTimeout(r, 900 + Math.random() * 600))
   const response = getMock(msg)
-  // ------------------------------------------------
+
 
   hideTyping()
   addMessage(response, msg)
@@ -144,8 +144,6 @@ function newChat() {
 function toggleSidebar() {
   document.querySelector('.sidebar').classList.toggle('collapsed')
 }
-
-//       <div class="welcome-sub">Ask me anything about applying to Cal Poly Pomona. </div>
 
 
 function openSearch() {
