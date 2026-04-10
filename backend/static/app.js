@@ -1,7 +1,7 @@
 // ── Conversation history (multi-turn context) ──
 let conversationHistory = []
 
-const API_URL = "/chat"  // relative URL works since frontend is served from same Railway server
+const API_URL = "/chat"
 
 function getTime() {
   return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -33,7 +33,7 @@ function addUserMessage(msg) {
         <circle cx="12" cy="7" r="4"/>
       </svg>
     </div>
-    <div>
+    <div class="bubble-wrap">
       <div class="bubble">${msg}</div>
       <div class="msg-time">${getTime()}</div>
     </div>
@@ -56,7 +56,7 @@ function addAIMessage(response) {
     <div class="msg-avatar ai">
       <img src="/static/cpp-logo.png" style="width: 20px; height: 20px; border-radius: 50%;">
     </div>
-    <div>
+    <div class="bubble-wrap">
       <div class="bubble">${formatted}</div>
       ${response.source
         ? `<a class="source-link" href="${response.source.url}" target="_blank">
