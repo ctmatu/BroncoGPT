@@ -1,6 +1,8 @@
 // ── Conversation history (multi-turn context) ──
 let conversationHistory = []
 
+const API_URL = "/chat"  // relative URL works since frontend is served from same Railway server
+
 function getTime() {
   return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
 }
@@ -46,14 +48,13 @@ function addAIMessage(response) {
   const aiRow = document.createElement('div')
   aiRow.className = `message-row ai${isNotFound ? ' not-found' : ''}`
 
-  // Simple markdown-lite: **bold** and newlines
   const formatted = response.text
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\n/g, '<br>')
 
   aiRow.innerHTML = `
     <div class="msg-avatar ai">
-      <img src="cpp-logo.png" style="width: 20px; height: 20px; border-radius: 50%;">
+      <img src="/static/cpp-logo.png" style="width: 20px; height: 20px; border-radius: 50%;">
     </div>
     <div>
       <div class="bubble">${formatted}</div>
@@ -104,16 +105,16 @@ async function handleSend() {
   input.style.height = 'auto'
   btn.disabled = true
 
-  // Show the user message as soon as it's sent
+  // Show user message IMMEDIATELY
   addUserMessage(msg)
   showTyping()
 
-  // add message to the history too
+  // Add to history BEFORE sending
   conversationHistory.push({ role: 'user', content: msg })
 
   let response
   try {
-    const res = await fetch("https://broncogpt.up.railway.app/chat", {
+    const res = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: msg, history: conversationHistory })
@@ -121,7 +122,7 @@ async function handleSend() {
     const data = await res.json()
     const replyText = data.reply || "Sorry, I couldn't get a response."
 
-    // ── Save assistant response to history ──
+    // Save assistant response to history
     conversationHistory.push({ role: 'assistant', content: replyText })
 
     response = {
@@ -132,7 +133,7 @@ async function handleSend() {
     }
   } catch (err) {
     response = {
-      text: "Could not connect to the server. Make sure the backend is running on localhost:8000.",
+      text: "Could not connect to the server. Please try again.",
       source: null
     }
   }
@@ -149,12 +150,10 @@ function sendChip(el) {
 }
 
 function newChat() {
-  // ── Clear history on new chat ──
   conversationHistory = []
-
   document.getElementById('messages').innerHTML = `
     <div class="welcome" id="welcome">
-      <div class="welcome-title">Hi, I'm your Campus Knowledge Agent!</div>
+      <div class="welcome-title">Hi, I'm BroncoGPT!</div>
       <div class="suggestion-chips">
         <div class="chip" onclick="sendChip(this)">When is the application deadline?</div>
         <div class="chip" onclick="sendChip(this)">What majors are offered?</div>

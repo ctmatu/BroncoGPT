@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BroncoGPT – Cal Poly Pomona</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="app">
+<!-- SIDEBAR -->
+<div class="sidebar">
+<div class="sidebar-header">
+<div class="sidebar-logo" onclick="newChat()" style="cursor: pointer;">
+<img src="/static/cpp-logo.png" alt="CPP Logo" style="width: 34px; height: 34px;"> 
+<div>
+<div class="logo-text">BroncoGPT</div>
+</div>
+</div>
+<button class="new-chat-btn" onclick="newChat()">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        New chat
+</button>
+<button class="new-chat-btn" onclick="openSearch()" style="margin-top: 8px;">
+<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        Search
+</button>
+</div>
+<div class="sidebar-section">Chat History</div>
+<div class="chat-history" id="chatHistory">
+</div>
+<div class="sidebar-footer">Cal Poly Pomona<br>Student Assistant</div>
+</div>
+<!-- MAIN -->
+<div class="main">
+<div class="messages" id="messages">
+<div class="welcome" id="welcome">
+<div class="welcome-title">Hi, I'm BroncoGPT!</div>
+<div class="suggestion-chips">
+<div class="chip" onclick="sendChip(this)">When is the application deadline?</div>
+<div class="chip" onclick="sendChip(this)">What majors are offered?</div>
+<div class="chip" onclick="sendChip(this)">Where is the financial aid office?</div>
+<div class="chip" onclick="sendChip(this)">What are the on campus dining options?</div>
+</div>
+</div>
+</div>
+<div class="input-area">
+<div class="input-bar">
+<textarea id="user-input" placeholder="Ask BroncoGPT" rows="1"
+onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+<button class="send-btn" id="send-btn" onclick="handleSend()">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script src="/static/app.js"></script>
+<div class="search-overlay" id="search-overlay">
+<div class="search-modal">
+<div class="search-bar">
+<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+<input type="text" id="search-input" placeholder="Search chats">
+<button onclick="closeSearch()">✕</button>
+</div>
+<div class="search-results" id="search-results"></div>
+</div>
+</div>
+</body>
+</html>
