@@ -110,9 +110,27 @@ async function handleSend() {
 
   showTyping()
 
-  // swap for real API call
-  await new Promise(r => setTimeout(r, 900 + Math.random() * 600))
-  const response = getMock(msg)
+  // real API call
+  let response
+  try {
+    const res = await fetch("http://localhost:8000/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: msg, history: [] })
+    })
+    const data = await res.json()
+    response = {
+      text: data.reply,
+      source: data.sources && data.sources.length > 0
+        ? { title: data.sources[0].title, url: data.sources[0].url }
+        : null
+    }
+  } catch (err) {
+    response = {
+      text: "Could not connect to the server. Make sure the backend is running on localhost:8000.",
+      source: null
+    }
+  }
 
 
   hideTyping()
