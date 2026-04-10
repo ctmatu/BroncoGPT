@@ -43,7 +43,7 @@ def run_agent(user_message: str, history: list) -> dict:
 
     # Build messages array
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
-    for turn in history[:-1]:
+    for turn in history:
         messages.append({"role": turn["role"], "content": turn["content"]})
     messages.append({"role": "user", "content": user_message})
 
