@@ -22,7 +22,7 @@
 ### Bonus Features
 - **User Accounts & Chat History** — Students can create accounts and revisit past conversations
 - **Email Verification** — Secure account creation with email verification
-- **Multilingual Support** — Interface supports multiple languages (responses in English)
+- **Multilingual Support** — Interface supports multiple languages
 - **Starter Questions** — Suggested questions displayed on load to help students get started
 - **Semantic Search** — Embedding-based search for better retrieval beyond keyword matching
 
