@@ -148,11 +148,11 @@ BroncoGPT/
 
 | Name | Role |
 |---|---|
-| _(Yengkai Yang)_ | Project Lead |
-| _(Caden Thomas Matuszewicz)_ | LLM & Agent Development |
-| _(Swathi Kabilan)_ | Data Engineering & Search |
-| _(Katie Yue)_ | Frontend & UI/UX |
-| _(Sophia Raldugina-Zhu)_ | Q/A Test / Documentation / Presentation |
+| _Yengkai Yang_ | Project Lead |
+| _Caden Thomas Matuszewicz_ | LLM & Agent Development |
+| _Swathi Kabilan_ | Data Engineering & Search |
+| _Katie Yue_ | Frontend & UI/UX |
+| _Sophia Raldugina-Zhu_ | Q/A Test / Documentation / Presentation |
 
 ---
 
