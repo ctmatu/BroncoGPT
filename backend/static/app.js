@@ -287,7 +287,7 @@ function addAIMessage(response, scroll = true) {
     nudge.className = 'signin-nudge'
     nudge.innerHTML = `
       <span>💾 Want to save your chat history?</span>
-      <button onclick="openAuthModal('signup')">Sign Up Free</button>
+      <button onclick="openAuthModal('signup')">Sign Up</button>
       <button class="secondary" onclick="openAuthModal('login')">Log In</button>
     `
     aiRow.querySelector('.bubble-wrap').appendChild(nudge)

@@ -16,12 +16,15 @@
     align-items: center;
     gap: 8px;
     z-index: 100;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(8px);
+    padding: 6px 6px 6px 12px;
+    border-radius: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   }
 
   .guest-bar-label {
-    font-size: 12px;
-    color: rgba(0,0,0,0.4);
-    margin-right: 4px;
+    display: none;
   }
 
   .guest-bar-btn {
@@ -36,7 +39,7 @@
 
   .guest-bar-btn.login {
     background: transparent;
-    border: 1.5px solid rgba(0,0,0,0.2);
+    border: none;
     color: #333;
   }
 
@@ -156,7 +159,6 @@
 
 <!-- GUEST BAR (top-right, shown when not logged in) -->
 <div class="guest-bar" id="guest-bar">
-  <span class="guest-bar-label">Save your chats —</span>
   <button class="guest-bar-btn login" onclick="openAuthModal('login')">Log In</button>
   <button class="guest-bar-btn signup" onclick="openAuthModal('signup')">Sign Up</button>
 </div>
