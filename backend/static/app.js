@@ -32,30 +32,34 @@ async function init() {
 }
 
 function showAppLoggedIn() {
-  // Hide auth screen if visible
   document.getElementById('auth-screen').style.display = 'none'
   document.getElementById('app').style.display = 'flex'
+  document.getElementById('app').classList.remove('guest-mode')
 
-  // Show sidebar, hide guest bar
   document.querySelector('.sidebar').style.display = 'flex'
   document.getElementById('guest-bar').style.display = 'none'
+  document.getElementById('mobile-menu-btn').style.display = ''
 
   document.getElementById('user-email').textContent = currentUser.email
   loadConversations()
 }
 
 function showAppGuest() {
-  // Hide auth screen, show app
   document.getElementById('auth-screen').style.display = 'none'
   document.getElementById('app').style.display = 'flex'
+  document.getElementById('app').classList.add('guest-mode')
 
-  // Hide sidebar, show guest bar
   document.querySelector('.sidebar').style.display = 'none'
   document.getElementById('guest-bar').style.display = 'flex'
+  document.getElementById('mobile-menu-btn').style.display = 'none'
 
-  // Reset chat state
   conversationHistory = []
   currentConversationId = null
+}
+
+function toggleMobileSidebar() {
+  document.querySelector('.sidebar').classList.toggle('open')
+  document.getElementById('sidebar-overlay').classList.toggle('visible')
 }
 
 function showAuth() {
@@ -280,18 +284,6 @@ function addAIMessage(response, scroll = true) {
       <div class="msg-time">${getTime()}</div>
     </div>
   `
-
-  // If guest, append a sign-in nudge after the first AI reply
-  if (!currentUser && messages.querySelectorAll('.message-row.ai').length === 0) {
-    const nudge = document.createElement('div')
-    nudge.className = 'signin-nudge'
-    nudge.innerHTML = `
-      <span>💾 Want to save your chat history?</span>
-      <button onclick="openAuthModal('signup')">Sign Up</button>
-      <button class="secondary" onclick="openAuthModal('login')">Log In</button>
-    `
-    aiRow.querySelector('.bubble-wrap').appendChild(nudge)
-  }
 
   messages.appendChild(aiRow)
   if (scroll) messages.scrollTop = messages.scrollHeight
