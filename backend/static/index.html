@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/styles.css">
 <style>
-  /* ── Guest bar (top-right, shown when not logged in) ── */
+  /* guest bar */
   .guest-bar {
     position: fixed;
     top: 16px;
@@ -56,19 +56,22 @@
     background: #154d2f;
   }
 
-  /* Push messages down so they don't hide under the guest bar */
+  /* push messages down so they don't hide under the guest bar */
   .guest-mode .messages {
     padding-top: 72px !important;
   }
 
-  /* Hide sidebar when guest */
   .app.guest-mode .sidebar {
     display: none !important;
   }
 
-  /* ── Mobile styles ── */
+  /* hide hamburger on desktop — needs to be BEFORE the media query so mobile can override it */
+  .mobile-menu-btn {
+    display: none;
+  }
+
+  /* mobile */
   @media (max-width: 640px) {
-    /* Guest bar smaller on mobile */
     .guest-bar {
       top: 10px;
       right: 10px;
@@ -80,12 +83,11 @@
       font-size: 12px;
     }
 
-    /* Push messages down more on mobile since bar is same height */
     .guest-mode .messages {
       padding-top: 72px !important;
     }
 
-    /* Sidebar takes full width on mobile when open */
+    /* sidebar slides in from the left on mobile */
     .sidebar {
       position: fixed;
       top: 0; left: 0; bottom: 0;
@@ -99,7 +101,7 @@
       transform: translateX(0);
     }
 
-    /* Hamburger button for logged-in mobile */
+    /* show the hamburger on mobile — overrides the display:none above */
     .mobile-menu-btn {
       display: flex;
       position: fixed;
@@ -115,7 +117,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    /* Overlay behind open sidebar */
+    /* dark overlay behind the open sidebar */
     .sidebar-overlay {
       display: none;
       position: fixed;
@@ -128,7 +130,6 @@
       display: block;
     }
 
-    /* Give main chat area breathing room on mobile */
     .main {
       width: 100% !important;
     }
@@ -142,16 +143,11 @@
       margin: 0 8px 12px !important;
     }
   }
-
-  /* Hide hamburger on desktop */
-  .mobile-menu-btn {
-    display: none;
-  }
 </style>
 </head>
 <body>
 
-<!-- AUTH SCREEN -->
+/* auth screen */
 <div class="auth-screen" id="auth-screen">
   <div class="auth-card">
     <div class="auth-logo">
@@ -177,7 +173,6 @@
         <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
         Continue with Google
       </button>
-      <!-- Guest option -->
       <button class="auth-btn" style="margin-top:8px;background:transparent;border:1.5px solid rgba(0,0,0,0.15);color:#555;" onclick="showAppGuest()">
         Continue without account →
       </button>
@@ -199,7 +194,7 @@
   </div>
 </div>
 
-<!-- HAMBURGER (mobile, logged-in only) -->
+/* hamburger, only visible on mobile when logged in */
 <button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileSidebar()">
   <svg width="18" height="18" fill="none" stroke="#333" stroke-width="2" viewBox="0 0 24 24">
     <path d="M3 12h18M3 6h18M3 18h18"/>
@@ -207,13 +202,13 @@
 </button>
 <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleMobileSidebar()"></div>
 
-<!-- GUEST BAR -->
+/* guest bar, top right when not logged in */
 <div class="guest-bar" id="guest-bar">
   <button class="guest-bar-btn login" onclick="openAuthModal('login')">Log In</button>
   <button class="guest-bar-btn signup" onclick="openAuthModal('signup')">Sign Up</button>
 </div>
 
-<!-- MAIN APP -->
+/* main app */
 <div class="app" id="app" style="display:none">
   <div class="sidebar">
     <div class="sidebar-header">
