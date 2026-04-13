@@ -1,4 +1,4 @@
-// supabase setup
+// supabase client setup
 const SUPABASE_URL = "https://mknmhnzmwyksjqbkgbbs.supabase.co"
 const SUPABASE_ANON_KEY = "sb_publishable_5P1TNGaT6rkoZQxw1fz8fQ_jZFuBFSM"
 const { createClient } = supabase
@@ -409,13 +409,29 @@ document.addEventListener('keydown', function(e) {
 
 // ── Voice input ──
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-let recognition = null
 let isListening = false
 
-if (SpeechRecognition) {
-  recognition = new SpeechRecognition()
+if (!SpeechRecognition) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('mic-btn')
+    if (btn) btn.style.display = 'none'
+  })
+}
+
+function toggleVoice() {
+  if (!SpeechRecognition) return
+
+  if (isListening) {
+    isListening = false
+    document.getElementById('mic-btn').classList.remove('listening')
+    return
+  }
+
+  // safari needs a fresh instance created inside the click handler
+  const recognition = new SpeechRecognition()
   recognition.continuous = false
-  recognition.interimResults = true  // show partial results as user speaks
+  recognition.interimResults = true
+  recognition.lang = navigator.language || 'en-US'
 
   recognition.onstart = () => {
     isListening = true
@@ -433,7 +449,6 @@ if (SpeechRecognition) {
   recognition.onend = () => {
     isListening = false
     document.getElementById('mic-btn').classList.remove('listening')
-    // auto send if we got something
     const val = document.getElementById('user-input').value.trim()
     if (val) handleSend()
   }
@@ -441,26 +456,10 @@ if (SpeechRecognition) {
   recognition.onerror = (e) => {
     isListening = false
     document.getElementById('mic-btn').classList.remove('listening')
-    console.error('speech recognition error:', e.error)
+    console.error('speech error:', e.error)
   }
-} else {
-  // browser doesn't support it, hide the button
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('mic-btn')
-    if (btn) btn.style.display = 'none'
-  })
-}
 
-function toggleVoice() {
-  if (!recognition) return
-  if (isListening) {
-    recognition.stop()
-  } else {
-    // detect language from browser or default to en
-    recognition.lang = navigator.language || 'en-US'
-    recognition.start()
-  }
+  recognition.start()
 }
-
 // start
 init()

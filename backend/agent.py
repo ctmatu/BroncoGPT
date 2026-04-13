@@ -40,6 +40,40 @@ TOOLS = [
     }
 ]
 
+# anchor queries for common questions — maps likely phrasings to better search terms
+ANCHOR_QUERIES = {
+    "deadline": "admissions application deadline dates",
+    "apply": "admissions application deadline dates",
+    "major": "cpp majors programs degrees colleges",
+    "majors": "cpp majors programs degrees colleges",
+    "degree": "cpp majors programs degrees colleges",
+    "financial aid": "financial aid scholarships grants office",
+    "financial": "financial aid scholarships grants office",
+    "aid": "financial aid scholarships grants office",
+    "scholarship": "financial aid scholarships grants office",
+    "dining": "on campus dining food restaurants meal plan",
+    "food": "on campus dining food restaurants meal plan",
+    "eat": "on campus dining food restaurants meal plan",
+    "housing": "student housing residence halls on campus living",
+    "dorm": "student housing residence halls on campus living",
+    "transfer": "transfer admissions requirements credits",
+    "tuition": "tuition fees cost of attendance",
+    "cost": "tuition fees cost of attendance",
+    "engineering": "college of engineering majors programs cpp",
+    "parking": "parking permits campus transportation",
+    "library": "robert e kennedy library hours resources",
+    "gym": "recreation center fitness campus",
+    "health": "student health services campus wellness",
+}
+
+def get_anchor_query(user_message: str) -> str | None:
+    # check if the message matches a known common question
+    msg_lower = user_message.lower()
+    for keyword, anchor in ANCHOR_QUERIES.items():
+        if keyword in msg_lower:
+            return anchor
+    return None
+
 def clean_history(history: list) -> list:
     # strip out tool call stuff from old turns, just keep the actual messages
     cleaned = []
@@ -59,7 +93,7 @@ def run_agent(user_message: str, history: list) -> dict:
     max_searches = 2
 
     while search_attempts < max_searches:
-        # force a search on the first try, let it decide on a retry
+        # force a search on the first try, let it decide on retry
         tool_choice = "required" if search_attempts == 0 else "auto"
 
         response = client.chat.completions.create(
@@ -79,6 +113,12 @@ def run_agent(user_message: str, history: list) -> dict:
         tool_call = msg.tool_calls[0]
         args = json.loads(tool_call.function.arguments)
         query = args.get("query", user_message)
+
+        # on the first search, override with anchor query if we have one
+        if search_attempts == 0:
+            anchor = get_anchor_query(user_message)
+            if anchor:
+                query = anchor
 
         tool_result = corpus_search(query)
         new_sources = tool_result.get("results", [])

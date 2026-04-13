@@ -148,9 +148,16 @@ def corpus_search(query: str) -> dict:
                 if phrase in intro:
                     phrase_bonus += 300
 
+        # penalize docs where no topic word appears in the url at all
+        # this kills the "library ebooks scores higher than engineering page" problem
+        if topic_words and not any(w in url_lower for w in topic_words):
+            url_penalty = normalized_score * 0.5
+        else:
+            url_penalty = 0
+
         total_score = (
             normalized_score + url_bonus + url_topic_bonus +
-            intro_bonus + heading_bonus + phrase_bonus
+            intro_bonus + heading_bonus + phrase_bonus - url_penalty
         )
 
         results.append({
