@@ -147,7 +147,7 @@
 </head>
 <body>
 
-/* auth screen */
+<!-- AUTH SCREEN -->
 <div class="auth-screen" id="auth-screen">
   <div class="auth-card">
     <div class="auth-logo">
@@ -194,7 +194,7 @@
   </div>
 </div>
 
-/* hamburger, only visible on mobile when logged in */
+<!-- hamburger, only visible on mobile when logged in -->
 <button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileSidebar()">
   <svg width="18" height="18" fill="none" stroke="#333" stroke-width="2" viewBox="0 0 24 24">
     <path d="M3 12h18M3 6h18M3 18h18"/>
@@ -202,13 +202,13 @@
 </button>
 <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleMobileSidebar()"></div>
 
-/* guest bar, top right when not logged in */
+<!-- guest bar, top right when not logged in -->
 <div class="guest-bar" id="guest-bar">
   <button class="guest-bar-btn login" onclick="openAuthModal('login')">Log In</button>
   <button class="guest-bar-btn signup" onclick="openAuthModal('signup')">Sign Up</button>
 </div>
 
-/* main app */
+<!-- MAIN APP -->
 <div class="app" id="app" style="display:none">
   <div class="sidebar">
     <div class="sidebar-header">
