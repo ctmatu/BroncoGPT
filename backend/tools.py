@@ -73,7 +73,7 @@ def extract_headings(content: str) -> str:
     headings = re.findall(r'^#{1,3}\s+(.+)$', content, re.MULTILINE)
     return " ".join(headings).lower()
 
-def best_snippet(content: str, query_words: list[str], length: int = 1200) -> str:
+def best_snippet(content: str, query_words: list[str], length: int = 600) -> str:
     # slide a window and grab the chunk with the most query hits
     content_lower = content.lower()
     best_pos = 0
