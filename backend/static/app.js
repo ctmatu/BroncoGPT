@@ -1,8 +1,181 @@
-// ── Conversation history (multi-turn context) ──
-let conversationHistory = []
+// ── Supabase setup ──
+const SUPABASE_URL = "https://mknmhnzmwyksjqbkgbbs.supabase.co"
+const SUPABASE_ANON_KEY = "sb_publishable_5P1TNGaT6rkoZQxw1fz8fQ_jZFuBFSM"
+const { createClient } = supabase
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 const API_URL = "/chat"
 
+let conversationHistory = []
+let currentConversationId = null
+let currentUser = null
+
+// ── Auth ──
+async function init() {
+  const { data: { session } } = await sb.auth.getSession()
+  if (session) {
+    currentUser = session.user
+    showApp()
+  } else {
+    showAuth()
+  }
+
+  sb.auth.onAuthStateChange((event, session) => {
+    if (session) {
+      currentUser = session.user
+      showApp()
+    } else {
+      currentUser = null
+      showAuth()
+    }
+  })
+}
+
+function showApp() {
+  document.getElementById('auth-screen').style.display = 'none'
+  document.getElementById('app').style.display = 'flex'
+  document.getElementById('user-email').textContent = currentUser.email
+  loadConversations()
+}
+
+function showAuth() {
+  document.getElementById('auth-screen').style.display = 'flex'
+  document.getElementById('app').style.display = 'none'
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'))
+  event.target.classList.add('active')
+  document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none'
+  document.getElementById('signup-form').style.display = tab === 'signup' ? 'block' : 'none'
+  hideAuthMessages()
+}
+
+function showAuthError(msg) {
+  const el = document.getElementById('auth-error')
+  el.textContent = msg
+  el.style.display = 'block'
+  document.getElementById('auth-success').style.display = 'none'
+}
+
+function showAuthSuccess(msg) {
+  const el = document.getElementById('auth-success')
+  el.textContent = msg
+  el.style.display = 'block'
+  document.getElementById('auth-error').style.display = 'none'
+}
+
+function hideAuthMessages() {
+  document.getElementById('auth-error').style.display = 'none'
+  document.getElementById('auth-success').style.display = 'none'
+}
+
+async function handleLogin() {
+  const email = document.getElementById('login-email').value.trim()
+  const password = document.getElementById('login-password').value
+  if (!email || !password) return showAuthError('Please fill in all fields.')
+  const { error } = await sb.auth.signInWithPassword({ email, password })
+  if (error) showAuthError(error.message)
+}
+
+async function handleSignup() {
+  const email = document.getElementById('signup-email').value.trim()
+  const password = document.getElementById('signup-password').value
+  if (!email || !password) return showAuthError('Please fill in all fields.')
+  if (password.length < 6) return showAuthError('Password must be at least 6 characters.')
+  const { error } = await sb.auth.signUp({ email, password })
+  if (error) showAuthError(error.message)
+  else showAuthSuccess('Check your email to confirm your account!')
+}
+
+async function handleGoogleAuth() {
+  const { error } = await sb.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: window.location.origin }
+  })
+  if (error) showAuthError(error.message)
+}
+
+async function handleSignOut() {
+  await sb.auth.signOut()
+  conversationHistory = []
+  currentConversationId = null
+}
+
+// ── Chat History ──
+async function loadConversations() {
+  const { data: { session } } = await sb.auth.getSession()
+  if (!session) return
+
+  const res = await fetch('/conversations', {
+    headers: { 'Authorization': `Bearer ${session.access_token}` }
+  })
+  if (!res.ok) return
+  const convs = await res.json()
+  renderConversations(convs)
+}
+
+function renderConversations(convs) {
+  const container = document.getElementById('chatHistory')
+  container.innerHTML = ''
+  convs.forEach(conv => {
+    const item = document.createElement('div')
+    item.className = 'history-item' + (conv.id === currentConversationId ? ' active' : '')
+    item.innerHTML = `
+      <div class="history-title">${conv.title || 'Untitled'}</div>
+      <div class="history-time">${formatTime(conv.created_at)}</div>
+    `
+    item.onclick = () => loadConversation(conv.id, conv.title)
+    container.appendChild(item)
+  })
+}
+
+async function loadConversation(id, title) {
+  const { data: { session } } = await sb.auth.getSession()
+  if (!session) return
+
+  currentConversationId = id
+  conversationHistory = []
+
+  const res = await fetch(`/conversations/${id}/messages`, {
+    headers: { 'Authorization': `Bearer ${session.access_token}` }
+  })
+  if (!res.ok) return
+  const msgs = await res.json()
+
+  // Clear and render messages
+  const container = document.getElementById('messages')
+  container.innerHTML = ''
+
+  msgs.forEach(msg => {
+    if (msg.role === 'user') {
+      addUserMessage(msg.content, false)
+    } else {
+      addAIMessage({
+        text: msg.content,
+        source: msg.sources && msg.sources.length > 0
+          ? { title: msg.sources[0].title, url: msg.sources[0].url }
+          : null
+      }, false)
+    }
+    conversationHistory.push({ role: msg.role, content: msg.content })
+  })
+
+  // Update active state in sidebar
+  document.querySelectorAll('.history-item').forEach(i => i.classList.remove('active'))
+  event.currentTarget.classList.add('active')
+}
+
+function formatTime(ts) {
+  const date = new Date(ts)
+  const now = new Date()
+  const diff = now - date
+  if (diff < 86400000) return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  if (diff < 172800000) return 'Yesterday'
+  return date.toLocaleDateString([], { month: 'short', day: 'numeric' })
+}
+
+// ── Chat UI ──
 function getTime() {
   return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
 }
@@ -21,7 +194,7 @@ function hideWelcome() {
   if (w) w.remove()
 }
 
-function addUserMessage(msg) {
+function addUserMessage(msg, scroll = true) {
   hideWelcome()
   const messages = document.getElementById('messages')
   const userRow = document.createElement('div')
@@ -39,10 +212,10 @@ function addUserMessage(msg) {
     </div>
   `
   messages.appendChild(userRow)
-  messages.scrollTop = messages.scrollHeight
+  if (scroll) messages.scrollTop = messages.scrollHeight
 }
 
-function addAIMessage(response) {
+function addAIMessage(response, scroll = true) {
   const messages = document.getElementById('messages')
   const isNotFound = response.source === null
   const aiRow = document.createElement('div')
@@ -54,7 +227,7 @@ function addAIMessage(response) {
 
   aiRow.innerHTML = `
     <div class="msg-avatar ai">
-      <img src="/static/cpp-logo.png" style="width: 20px; height: 20px; border-radius: 50%;">
+      <img src="/static/cpp-logo.png" style="width:20px;height:20px;border-radius:50%;">
     </div>
     <div class="bubble-wrap">
       <div class="bubble">${formatted}</div>
@@ -72,7 +245,7 @@ function addAIMessage(response) {
     </div>
   `
   messages.appendChild(aiRow)
-  messages.scrollTop = messages.scrollHeight
+  if (scroll) messages.scrollTop = messages.scrollHeight
 }
 
 function showTyping() {
@@ -82,7 +255,7 @@ function showTyping() {
   el.id = 'typing'
   el.innerHTML = `
     <div class="msg-avatar ai">
-      <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.usteamcolors.com%2Fimages%2Fncaa%2Fdivision-2%2Fcal-poly-pomona-broncos-logo.png&f=1&nofb=1&ipt=8b52cacffaf3c4a9861f6f8d3618cc0a776a726fce3790fb7f2f8b4e4ffce1fe" style="width: 20px; height: 20px; border-radius: 50%;">
+      <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.usteamcolors.com%2Fimages%2Fncaa%2Fdivision-2%2Fcal-poly-pomona-broncos-logo.png&f=1&nofb=1&ipt=8b52cacffaf3c4a9861f6f8d3618cc0a776a726fce3790fb7f2f8b4e4ffce1fe" style="width:20px;height:20px;border-radius:50%;">
     </div>
     <div class="typing-dots"><span></span><span></span><span></span></div>
   `
@@ -97,33 +270,44 @@ function hideTyping() {
 
 async function handleSend() {
   const input = document.getElementById('user-input')
-  const btn   = document.getElementById('send-btn')
-  const msg   = input.value.trim()
+  const btn = document.getElementById('send-btn')
+  const msg = input.value.trim()
   if (!msg) return
 
   input.value = ''
   input.style.height = 'auto'
   btn.disabled = true
 
-  // Show user message IMMEDIATELY
   addUserMessage(msg)
   showTyping()
-
-  // Add to history BEFORE sending
   conversationHistory.push({ role: 'user', content: msg })
+
+  const { data: { session } } = await sb.auth.getSession()
 
   let response
   try {
     const res = await fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: msg, history: conversationHistory })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(session ? { 'Authorization': `Bearer ${session.access_token}` } : {})
+      },
+      body: JSON.stringify({
+        message: msg,
+        history: conversationHistory,
+        conversation_id: currentConversationId
+      })
     })
     const data = await res.json()
     const replyText = data.reply || "Sorry, I couldn't get a response."
 
-    // Save assistant response to history
     conversationHistory.push({ role: 'assistant', content: replyText })
+
+    // Update conversation ID if new conversation was created
+    if (data.conversation_id && !currentConversationId) {
+      currentConversationId = data.conversation_id
+      loadConversations() // refresh sidebar
+    }
 
     response = {
       text: replyText,
@@ -151,6 +335,7 @@ function sendChip(el) {
 
 function newChat() {
   conversationHistory = []
+  currentConversationId = null
   document.getElementById('messages').innerHTML = `
     <div class="welcome" id="welcome">
       <div class="welcome-title">Hi, I'm BroncoGPT!</div>
@@ -185,3 +370,6 @@ document.getElementById('search-overlay').addEventListener('click', function(e) 
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeSearch()
 })
+
+// ── Start ──
+init()
