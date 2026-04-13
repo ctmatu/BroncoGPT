@@ -81,6 +81,7 @@ def chat(req: ChatRequest, request: Request):
     check_rate_limit(request.client.host)
     user = get_current_user(request)
 
+    # ── VERSION B: Allow anonymous chat, save history only for logged-in users ──
     try:
         history = [{"role": m.role, "content": m.content} for m in req.history]
         history.append({"role": "user", "content": req.message})
@@ -88,10 +89,9 @@ def chat(req: ChatRequest, request: Request):
         reply = result["reply"]
         sources = result["sources"]
 
-        # ── Save to Supabase if user is logged in ──
         conversation_id = req.conversation_id
+
         if user:
-            # Create new conversation if none exists
             if not conversation_id:
                 title = req.message[:60] + ("..." if len(req.message) > 60 else "")
                 conv = supabase.table("conversations").insert({
@@ -100,7 +100,6 @@ def chat(req: ChatRequest, request: Request):
                 }).execute()
                 conversation_id = conv.data[0]["id"]
 
-            # Save user message
             supabase.table("messages").insert({
                 "conversation_id": conversation_id,
                 "role": "user",
@@ -108,7 +107,6 @@ def chat(req: ChatRequest, request: Request):
                 "sources": []
             }).execute()
 
-            # Save assistant message
             supabase.table("messages").insert({
                 "conversation_id": conversation_id,
                 "role": "assistant",

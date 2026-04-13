@@ -15,27 +15,47 @@ async function init() {
   const { data: { session } } = await sb.auth.getSession()
   if (session) {
     currentUser = session.user
-    showApp()
+    showAppLoggedIn()
   } else {
-    showAuth()
+    showAppGuest()
   }
 
   sb.auth.onAuthStateChange((event, session) => {
     if (session) {
       currentUser = session.user
-      showApp()
+      showAppLoggedIn()
     } else {
       currentUser = null
-      showAuth()
+      showAppGuest()
     }
   })
 }
 
-function showApp() {
+function showAppLoggedIn() {
+  // Hide auth screen if visible
   document.getElementById('auth-screen').style.display = 'none'
   document.getElementById('app').style.display = 'flex'
+
+  // Show sidebar, hide guest bar
+  document.querySelector('.sidebar').style.display = 'flex'
+  document.getElementById('guest-bar').style.display = 'none'
+
   document.getElementById('user-email').textContent = currentUser.email
   loadConversations()
+}
+
+function showAppGuest() {
+  // Hide auth screen, show app
+  document.getElementById('auth-screen').style.display = 'none'
+  document.getElementById('app').style.display = 'flex'
+
+  // Hide sidebar, show guest bar
+  document.querySelector('.sidebar').style.display = 'none'
+  document.getElementById('guest-bar').style.display = 'flex'
+
+  // Reset chat state
+  conversationHistory = []
+  currentConversationId = null
 }
 
 function showAuth() {
@@ -43,9 +63,26 @@ function showAuth() {
   document.getElementById('app').style.display = 'none'
 }
 
+function openAuthModal(tab = 'login') {
+  showAuth()
+  switchTabByName(tab)
+}
+
 function switchTab(tab) {
   document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'))
   event.target.classList.add('active')
+  document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none'
+  document.getElementById('signup-form').style.display = tab === 'signup' ? 'block' : 'none'
+  hideAuthMessages()
+}
+
+function switchTabByName(tab) {
+  document.querySelectorAll('.auth-tab').forEach(t => {
+    t.classList.remove('active')
+    if (t.textContent.toLowerCase().includes(tab === 'login' ? 'sign in' : 'sign up')) {
+      t.classList.add('active')
+    }
+  })
   document.getElementById('login-form').style.display = tab === 'login' ? 'block' : 'none'
   document.getElementById('signup-form').style.display = tab === 'signup' ? 'block' : 'none'
   hideAuthMessages()
@@ -100,9 +137,10 @@ async function handleSignOut() {
   await sb.auth.signOut()
   conversationHistory = []
   currentConversationId = null
+  newChat()
 }
 
-// ── Chat History ──
+// ── Chat History (logged-in only) ──
 async function loadConversations() {
   const { data: { session } } = await sb.auth.getSession()
   if (!session) return
@@ -143,7 +181,6 @@ async function loadConversation(id, title) {
   if (!res.ok) return
   const msgs = await res.json()
 
-  // Clear and render messages
   const container = document.getElementById('messages')
   container.innerHTML = ''
 
@@ -161,7 +198,6 @@ async function loadConversation(id, title) {
     conversationHistory.push({ role: msg.role, content: msg.content })
   })
 
-  // Update active state in sidebar
   document.querySelectorAll('.history-item').forEach(i => i.classList.remove('active'))
   event.currentTarget.classList.add('active')
 }
@@ -244,6 +280,19 @@ function addAIMessage(response, scroll = true) {
       <div class="msg-time">${getTime()}</div>
     </div>
   `
+
+  // If guest, append a sign-in nudge after the first AI reply
+  if (!currentUser && messages.querySelectorAll('.message-row.ai').length === 0) {
+    const nudge = document.createElement('div')
+    nudge.className = 'signin-nudge'
+    nudge.innerHTML = `
+      <span>💾 Want to save your chat history?</span>
+      <button onclick="openAuthModal('signup')">Sign Up Free</button>
+      <button class="secondary" onclick="openAuthModal('login')">Log In</button>
+    `
+    aiRow.querySelector('.bubble-wrap').appendChild(nudge)
+  }
+
   messages.appendChild(aiRow)
   if (scroll) messages.scrollTop = messages.scrollHeight
 }
@@ -255,7 +304,7 @@ function showTyping() {
   el.id = 'typing'
   el.innerHTML = `
     <div class="msg-avatar ai">
-      <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.usteamcolors.com%2Fimages%2Fncaa%2Fdivision-2%2Fcal-poly-pomona-broncos-logo.png&f=1&nofb=1&ipt=8b52cacffaf3c4a9861f6f8d3618cc0a776a726fce3790fb7f2f8b4e4ffce1fe" style="width:20px;height:20px;border-radius:50%;">
+      <img src="/static/cpp-logo.png" style="width:20px;height:20px;border-radius:50%;">
     </div>
     <div class="typing-dots"><span></span><span></span><span></span></div>
   `
@@ -303,10 +352,9 @@ async function handleSend() {
 
     conversationHistory.push({ role: 'assistant', content: replyText })
 
-    // Update conversation ID if new conversation was created
     if (data.conversation_id && !currentConversationId) {
       currentConversationId = data.conversation_id
-      loadConversations() // refresh sidebar
+      if (currentUser) loadConversations()
     }
 
     response = {
@@ -348,10 +396,6 @@ function newChat() {
     </div>
   `
   document.querySelectorAll('.history-item').forEach(i => i.classList.remove('active'))
-}
-
-function toggleSidebar() {
-  document.querySelector('.sidebar').classList.toggle('collapsed')
 }
 
 function openSearch() {
