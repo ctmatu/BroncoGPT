@@ -65,6 +65,34 @@
     display: none !important;
   }
 
+  /* mic button */
+  .mic-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    color: #888;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .mic-btn:hover {
+    background: rgba(0,0,0,0.06);
+    color: #333;
+  }
+
+  /* pulse animation when listening */
+  .mic-btn.listening {
+    color: #e53e3e;
+    animation: mic-pulse 1s infinite;
+  }
+
+  @keyframes mic-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
   /* hide hamburger on desktop — needs to be BEFORE the media query so mobile can override it */
   .mobile-menu-btn {
     display: none;
@@ -251,6 +279,12 @@
       <div class="input-bar">
         <textarea id="user-input" placeholder="Ask BroncoGPT" rows="1"
           onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+        <button class="mic-btn" id="mic-btn" onclick="toggleVoice()" title="Voice input">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="9" y="2" width="6" height="11" rx="3"/>
+            <path d="M5 10a7 7 0 0 0 14 0M12 19v3M8 22h8"/>
+          </svg>
+        </button>
         <button class="send-btn" id="send-btn" onclick="handleSend()">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
         </button>

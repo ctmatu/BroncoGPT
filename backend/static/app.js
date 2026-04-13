@@ -1,4 +1,4 @@
-// ── Supabase setup ──
+// supabase setup
 const SUPABASE_URL = "https://mknmhnzmwyksjqbkgbbs.supabase.co"
 const SUPABASE_ANON_KEY = "sb_publishable_5P1TNGaT6rkoZQxw1fz8fQ_jZFuBFSM"
 const { createClient } = supabase
@@ -407,5 +407,60 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeSearch()
 })
 
-// ── Start ──
+// ── Voice input ──
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+let recognition = null
+let isListening = false
+
+if (SpeechRecognition) {
+  recognition = new SpeechRecognition()
+  recognition.continuous = false
+  recognition.interimResults = true  // show partial results as user speaks
+
+  recognition.onstart = () => {
+    isListening = true
+    document.getElementById('mic-btn').classList.add('listening')
+  }
+
+  recognition.onresult = (e) => {
+    const transcript = Array.from(e.results)
+      .map(r => r[0].transcript)
+      .join('')
+    document.getElementById('user-input').value = transcript
+    autoResize(document.getElementById('user-input'))
+  }
+
+  recognition.onend = () => {
+    isListening = false
+    document.getElementById('mic-btn').classList.remove('listening')
+    // auto send if we got something
+    const val = document.getElementById('user-input').value.trim()
+    if (val) handleSend()
+  }
+
+  recognition.onerror = (e) => {
+    isListening = false
+    document.getElementById('mic-btn').classList.remove('listening')
+    console.error('speech recognition error:', e.error)
+  }
+} else {
+  // browser doesn't support it, hide the button
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('mic-btn')
+    if (btn) btn.style.display = 'none'
+  })
+}
+
+function toggleVoice() {
+  if (!recognition) return
+  if (isListening) {
+    recognition.stop()
+  } else {
+    // detect language from browser or default to en
+    recognition.lang = navigator.language || 'en-US'
+    recognition.start()
+  }
+}
+
+// start
 init()
