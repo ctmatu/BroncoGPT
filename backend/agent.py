@@ -64,6 +64,11 @@ ANCHOR_QUERIES = {
     "library": "robert e kennedy library hours resources",
     "gym": "recreation center fitness campus",
     "health": "student health services campus wellness",
+    "address": "campus offices locations contact information",
+    "location": "campus offices locations contact information",
+    "where is": "campus offices locations contact information",
+    "office hours": "campus offices locations contact information",
+    "contact": "campus offices locations contact information",
 }
 
 def get_anchor_query(user_message: str) -> str | None:
