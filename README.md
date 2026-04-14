@@ -6,7 +6,15 @@
 
 ## Demo
 
-> _Add a screenshot or screen recording of the chat interface here_
+> 
+
+https://github.com/user-attachments/assets/6726cf79-cc5c-4050-b2d8-fbd67a6d599e
+
+
+
+
+
+
 
 ---
 
