@@ -10,6 +10,13 @@
 
 ---
 
+## Try it out here:
+
+> https://broncogpt.up.railway.app/#
+
+
+---
+
 ## Features
 
 ### Core Requirements
@@ -24,6 +31,7 @@
 - **Email Verification** — Secure account creation with email verification
 - **Multilingual Support** — Interface supports multiple languages
 - **Starter Questions** — Suggested questions displayed on load to help students get started
+- **Mobile Responsive Design** — Interface adapts to mobile screen sizes for on-the-go access
 - **Semantic Search** — Embedding-based search for better retrieval beyond keyword matching
 
 ---
