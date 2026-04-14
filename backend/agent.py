@@ -4,7 +4,7 @@ import random
 from typing import Generator
 from groq import Groq
 from dotenv import load_dotenv
-from tools import corpus_search, clean_query, tokenize
+from tools import corpus_search, tokenize
 
 load_dotenv()
 
@@ -75,33 +75,22 @@ def _extract_topic(prior_history: list, min_tokens: int = 2) -> str:
     for msg in reversed(prior_history):
         if msg.get("role") != "user":
             continue
-        tokens = tokenize(clean_query(msg["content"]))
+        tokens = tokenize(msg["content"])
         if len(tokens) >= min_tokens:
             return " ".join(tokens[:6])  # cap at 6 tokens to stay focused
     return ""
 
 
 def build_retrieval_query(user_message: str, history: list) -> str:
-    """
-    Build a BM25 query from the current message.
-
-    For short follow-ups (4 or fewer meaningful tokens after stop-word removal)
-    prepend the topic recovered by scanning all prior user turns so BM25 always
-    has enough signal, even several hops deep into a thread.
-
-    history always includes the current message as its last entry; we exclude
-    it before looking backwards so we never double-count it.
-    """
-    cleaned = clean_query(user_message)
-    tokens = tokenize(cleaned)
+    tokens = tokenize(user_message)
 
     if len(tokens) <= 4:
-        prior_history = history[:-1]           # exclude current message
-        topic = _extract_topic(prior_history)  # scan ALL prior user turns
-        combined = f"{topic} {cleaned}".strip() if topic else cleaned
+        prior_history = history[:-1]
+        topic = _extract_topic(prior_history)
+        combined = f"{topic} {user_message}".strip() if topic else user_message
         return combined
 
-    return cleaned
+    return user_message
 
 
 def format_results(results: list) -> str:

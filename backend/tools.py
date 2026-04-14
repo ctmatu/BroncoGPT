@@ -34,31 +34,47 @@ STOP_WORDS = {
     "have", "has", "had", "do", "does", "did", "will", "would", "could",
     "should", "may", "might", "shall", "can", "this", "that", "these",
     "those", "it", "its", "about", "what", "how", "when", "where", "which",
-    "who", "i", "my", "me", "we", "our", "you", "your", "whats", "their",
-    "also", "just", "tell",
-    # FIX 3: generic institutional nouns that hurt precision
-    "office", "department", "center", "services", "service",
+    "who", "i", "my", "me", "we", "our", "you", "your",
 }
 
+ANCHOR_QUERIES = {
+    "application deadline": "admissions application deadline dates",
+    "when to apply": "admissions application deadline dates",
+    "how to apply": "admissions application process",
+    "what majors": "undergraduate programs majors degrees",
+    "majors offered": "undergraduate programs majors degrees",
+    "list of majors": "undergraduate programs majors degrees",
+    "what degrees": "undergraduate programs majors degrees",
+    "what can i study": "undergraduate programs majors degrees",
+    "financial aid": "financial aid scholarships grants",
+    "scholarship": "financial aid scholarships",
+    "dining": "dining food meal campus",
+    "dining options": "dining food meal campus",
+    "on campus dining": "dining food meal campus",
+    "campus dining": "dining food meal campus",
+    "meal plan": "dining meal plan food",
+    "food on campus": "dining food meal campus",
+    "where to eat": "dining food meal campus",
+    "student housing": "student housing residence halls",
+    "residence hall": "student housing residence halls",
+    "dorm": "student housing residence halls",
+    "transfer": "transfer admissions requirements",
+    "tuition": "tuition fees cost attendance",
+    "parking": "parking permits campus",
+    "library": "kennedy library hours",
+    "gym": "recreation center fitness",
+    "student health": "student health services",
+    "financial aid office": "financial aid contact location",
+    "where is the": "campus offices locations contact",
+}
 
-# ── Query cleaning ────────────────────────────────────────────────────────────
+def get_anchor_query(user_message: str) -> str | None:
+    msg_lower = user_message.lower()
+    for phrase, anchor in ANCHOR_QUERIES.items():
+        if phrase in msg_lower:
+            return anchor
+    return None
 
-FILLER_PHRASES = re.compile(
-    r"^(can you tell me|tell me|what can you tell me about|"
-    r"what is|what are|how do i|where is|where are|"
-    r"i want to know about|do you know|give me info on|"
-    r"give me information about|more about|i need info on)\s+",
-    re.IGNORECASE
-)
-
-def clean_query(text: str) -> str:
-    """Strip conversational filler so BM25 sees only the meaningful terms."""
-    text = text.strip()
-    text = FILLER_PHRASES.sub("", text)
-    return text.strip()
-
-
-# ── Text helpers ──────────────────────────────────────────────────────────────
 
 def strip_footer(content: str) -> str:
     footer_markers = [
@@ -75,13 +91,12 @@ def strip_footer(content: str) -> str:
 
 
 def tokenize(text: str) -> list[str]:
-    """Lowercase, remove punctuation, remove stop words."""
     words = re.findall(r'\b[a-z]{2,}\b', text.lower())
     return [w for w in words if w not in STOP_WORDS]
 
 
-def best_snippet(content: str, query_words: list[str], length: int = 500) -> str:
-    """Find the passage in content with the highest density of query words."""
+def best_snippet(content: str, query_words: list[str], length: int = 600) -> str:
+    """Find the passage with highest query word density."""
     content_lower = content.lower()
     best_pos = 0
     best_hits = 0
@@ -92,6 +107,9 @@ def best_snippet(content: str, query_words: list[str], length: int = 500) -> str
         if hits > best_hits:
             best_hits = hits
             best_pos = i
+    # If no hits found, just return the top of the doc
+    if best_hits == 0:
+        return content[:length].strip()
     snippet = content[best_pos:best_pos + length].strip()
     lines = snippet.split('\n')
     if len(lines) > 2:
@@ -100,7 +118,6 @@ def best_snippet(content: str, query_words: list[str], length: int = 500) -> str
 
 
 def _make_title(filename: str, url: str) -> str:
-    """Generate a clean, human-readable title from the URL or filename."""
     try:
         parts = [p for p in url.rstrip("/").split("/") if p and "cpp.edu" not in p]
         if parts:
@@ -110,87 +127,30 @@ def _make_title(filename: str, url: str) -> str:
             if len(parts) >= 2:
                 parent = parts[-2].replace("-", " ").replace("_", " ")
                 if parent.lower() not in {"index", "current-students", "about", "www", "static"}:
-                    label = f"{parent.title()} – {last.title()}"
-                    return label
+                    return f"{parent.title()} – {last.title()}"
             return last.title()
     except Exception:
         pass
-
     name = filename.replace(".md", "").replace(".shtml", "")
     name = name.replace("__", " – ").replace("_", " ").replace("-", " ")
     return name.title()
 
 
-# ── FIX 5: Majors/programs intent detection ───────────────────────────────────
-
-MAJORS_INTENT_RE = re.compile(
-    r'\b(majors?|programs?|degrees?|colleges?|bachelor|undergrad(uate)?|graduate)\b',
-    re.IGNORECASE,
-)
-
-# If any of these appear alongside a majors-intent word the query is specific,
-# not a broad "what does CPP offer?" question — skip the canned response.
-SUBJECT_WORDS = {
-    "computer", "science", "engineering", "business", "nursing", "biology",
-    "chemistry", "psychology", "history", "math", "mathematics", "english",
-    "art", "music", "architecture", "accounting", "finance", "marketing",
-    "management", "economics", "political", "sociology", "physics",
-    "electrical", "mechanical", "civil", "aerospace", "environmental",
-    "hospitality", "agriculture", "kinesiology", "communications",
-    "graphic", "animation", "philosophy", "anthropology", "geography",
-    "information", "technology", "cybersecurity", "data", "statistics",
-    "pre", "med", "law", "education", "liberal", "interdisciplinary",
-    "requirements", "courses", "curriculum", "classes", "units", "credits",
-    "admission", "transfer", "gpa", "prerequisite",
-}
-
-MAJORS_CANNED = {
-    "title": "Cal Poly Pomona – Academic Programs",
-    "url":   "https://www.cpp.edu/academics/index.shtml",
-    "snippet": (
-        "CPP offers undergraduate and graduate programs across 9 colleges: "
-        "Agriculture, Business Administration, Education & Integrative Studies, "
-        "Engineering, Environmental Design, Letters Arts & Social Sciences, "
-        "Science, Extended University, and the Collins College of Hospitality Management. "
-        "Browse the full list at cpp.edu/academics."
-    ),
-}
-
-def _is_majors_query(query: str) -> bool:
-    """
-    Return True only for truly generic 'what majors does CPP offer?' questions.
-    Returns False as soon as a specific subject, field, or action word appears.
-    """
-    if not MAJORS_INTENT_RE.search(query):
-        return False
-
-    tokens = set(tokenize(query))
-
-    # Any recognised subject word → specific question, not a broad listing
-    if tokens & SUBJECT_WORDS:
-        return False
-
-    # 5+ unique meaningful tokens → specific question
-    if len(tokens) >= 5:
-        return False
-
-    return True
-
-
-# ── Corpus loading ────────────────────────────────────────────────────────────
+# ── Module-level singletons ───────────────────────────────────────────────────
 
 _DOCS: list[dict] = []
-_BM25: BM25Okapi | None = None
+_BM25 = None
 
 
 def _build_index():
     global _DOCS, _BM25
+    from rank_bm25 import BM25Okapi
 
     try:
         with open(INDEX_PATH, "r") as f:
             index: dict[str, str] = json.load(f)
     except FileNotFoundError:
-        print("[tools] WARNING: index.json not found — corpus search disabled")
+        print("[tools] WARNING: index.json not found")
         return
 
     tokenized_corpus = []
@@ -209,7 +169,7 @@ def _build_index():
             continue
 
         content = strip_footer(raw)
-        tokens  = tokenize(content)
+        tokens = tokenize(content)
         if not tokens:
             continue
 
@@ -231,66 +191,57 @@ def _get_index():
     return _DOCS, _BM25
 
 
-# ── Main search function ──────────────────────────────────────────────────────
+# ── Search ────────────────────────────────────────────────────────────────────
 
 def corpus_search(query: str, top_k: int = 5) -> dict:
     docs, bm25 = _get_index()
+
     if not docs or bm25 is None:
         return {"results": [], "error": "Corpus not available"}
-
-    query = clean_query(query)
-
-    # FIX 5: intercept broad majors/programs queries before BM25
-    if _is_majors_query(query):
-        return {"results": [MAJORS_CANNED]}
 
     query_tokens = tokenize(query)
     if not query_tokens:
         return {"results": []}
 
-    scores = bm25.get_scores(query_tokens)
+    bm25_scores = bm25.get_scores(query_tokens)
 
-    # Only apply prefix boost if the top result is confident
-    raw_ranked = sorted(zip(scores, docs), key=lambda x: x[0], reverse=True)
-    top_prefix = None
-    if raw_ranked and raw_ranked[0][0] >= 8.0:
-        top_filename = raw_ranked[0][1]["filename"]
-        parts = top_filename.split("__")
-        if len(parts) >= 2:
-            top_prefix = "__".join(parts[:2])
+    # Normalize BM25 scores to 0-1 range
+    max_bm25 = max(bm25_scores) if max(bm25_scores) > 0 else 1
+    
+    scored = []
+    for i, (score, doc) in enumerate(zip(bm25_scores, docs)):
+        normalized_bm25 = score / max_bm25
 
-    # Re-rank with prefix boost
-    def boosted_score(score, doc):
-        if top_prefix and doc["filename"].startswith(top_prefix):
-            return score * 1.5
-        return score
+        # URL bonus — replicate what made the old system good
+        url_lower = doc["url"].lower()
+        filename_lower = doc["filename"].lower()
+        topic_words = [w for w in query_tokens if len(w) > 3]
+        url_bonus = sum(0.4 for w in topic_words if w in url_lower or w in filename_lower)
 
-    ranked = sorted(
-        [(boosted_score(s, d), d) for s, d in zip(scores, docs)],
-        key=lambda x: x[0],
-        reverse=True,
-    )
+        # Intro bonus — words in first 500 chars of content
+        intro = doc["content"][:500].lower()
+        intro_bonus = sum(0.05 for w in query_tokens if w in intro)
 
-    MIN_SCORE = 1.0
+        # Exact phrase bonus
+        phrase_bonus = 0.3 if " ".join(query_tokens[:3]) in doc["content"].lower() else 0
+
+        total = normalized_bm25 + url_bonus + intro_bonus + phrase_bonus
+        scored.append((total, doc))
+
+    scored.sort(key=lambda x: x[0], reverse=True)
+
     results = []
-    seen = set()
-
-    for score, doc in ranked:
-        if len(results) >= top_k:
+    for total_score, doc in scored[:top_k]:
+        if total_score <= 0:
             break
-        if score < MIN_SCORE or doc["filename"] in seen:
-            continue
-        seen.add(doc["filename"])
         results.append({
             "url":     doc["url"],
             "title":   doc["title"],
             "snippet": best_snippet(doc["content"], query_tokens),
         })
 
-    return {"results": results[:top_k]}
+    return {"results": results}
 
-
-# ── Tool schema ───────────────────────────────────────────────────────────────
 
 CORPUS_SEARCH_TOOL = {
     "name": "corpus_search",
@@ -307,9 +258,8 @@ CORPUS_SEARCH_TOOL = {
             "query": {
                 "type": "string",
                 "description": (
-                    "A concise, keyword-focused search query based on what the student is asking. "
-                    "Use specific academic terms — e.g. 'computer science major requirements' "
-                    "rather than 'what classes do I need for CS'."
+                    "A concise, keyword-focused search query. "
+                    "Use specific terms e.g. 'dining options campus food' rather than 'where can I eat'."
                 )
             }
         },
