@@ -17,57 +17,64 @@ SYSTEM_PROMPT = """You are BroncoAI, the official AI assistant for Cal Poly Pomo
 Your job is to help students find accurate, helpful information about the university.
 
 Rules:
-- Base your answers on the search results provided. Do not make up information.
-- If the search results have no useful info, say you couldn't find it and suggest the student contact the relevant CPP office or visit cpp.edu.
-- Be friendly, concise, and helpful. Keep responses under 150 words.
-- Never list every item from a long list — instead summarize by category or department and link to the full list.
-  Example: for "what majors are offered?" name the colleges (Engineering, Business, Arts, etc.) with 1-2 example majors each, then say "see cpp.edu/academic-programs for the full list."
-- When citing information, mention the source page so students can verify.
-- Always respond in the same language the user is writing in. If the user writes in Spanish, respond in Spanish. If they write in Chinese, respond in Chinese. Default to English if uncertain.
-- If you cannot confidently respond in the user's language, respond in English rather than producing broken or inaccurate text.
+- If the user is just greeting you or making small talk, respond naturally and briefly. Do NOT search for anything.
+- For questions about CPP, base your answers only on the search results provided in the context.
+- Do not make up information. If search results have nothing useful, say so and suggest cpp.edu or the relevant office.
+- Be friendly and concise. Keep responses under 120 words.
+- For broad questions (like "what majors are offered?"), summarize by college/department with 1-2 examples each, then link to cpp.edu for the full list. Do not enumerate every single major.
+- Mention the source page when citing specific information.
+- Always respond in the same language the user is writing in. Default to English if uncertain.
+- If you cannot confidently respond in the user's language, use English instead.
 """
 
-# anchor queries for common questions — maps likely phrasings to better search terms
+# greetings that should skip corpus search entirely
+GREETINGS = {
+    "hi", "hello", "hey", "hiya", "howdy", "sup", "what's up", "whats up",
+    "good morning", "good afternoon", "good evening", "hola", "bonjour",
+    "yo", "greetings", "hi there", "hello there", "hey there"
+}
+
+def is_greeting(message: str) -> bool:
+    # check if the message is just a greeting with no real question
+    cleaned = message.lower().strip().rstrip("!.,?")
+    return cleaned in GREETINGS or len(cleaned.split()) <= 2 and any(g in cleaned for g in GREETINGS)
+
+# anchor queries for common questions
 ANCHOR_QUERIES = {
-    "deadline": "admissions application deadline dates",
-    "apply": "admissions application deadline dates",
-    "major": "cpp majors programs degrees colleges",
-    "majors": "cpp majors programs degrees colleges",
-    "degree": "cpp majors programs degrees colleges",
+    "application deadline": "admissions application deadline dates",
+    "when to apply": "admissions application deadline dates",
+    "how to apply": "admissions application deadline dates",
+    "what majors": "cpp majors programs degrees colleges",
+    "majors offered": "cpp majors programs degrees colleges",
+    "what degrees": "cpp majors programs degrees colleges",
     "financial aid": "financial aid scholarships grants office",
-    "financial": "financial aid scholarships grants office",
-    "aid": "financial aid scholarships grants office",
     "scholarship": "financial aid scholarships grants office",
     "dining": "on campus dining food restaurants meal plan",
-    "food": "on campus dining food restaurants meal plan",
-    "eat": "on campus dining food restaurants meal plan",
-    "housing": "student housing residence halls on campus living",
+    "dining options": "on campus dining food restaurants meal plan",
+    "campus food": "on campus dining food restaurants meal plan",
+    "student housing": "student housing residence halls on campus living",
+    "residence hall": "student housing residence halls on campus living",
     "dorm": "student housing residence halls on campus living",
     "transfer": "transfer admissions requirements credits",
     "tuition": "tuition fees cost of attendance",
-    "cost": "tuition fees cost of attendance",
-    "engineering": "college of engineering majors programs cpp",
     "parking": "parking permits campus transportation",
     "library": "robert e kennedy library hours resources",
     "gym": "recreation center fitness campus",
-    "health": "student health services campus wellness",
-    "address": "campus offices locations contact information",
-    "location": "campus offices locations contact information",
-    "where is": "campus offices locations contact information",
-    "office hours": "campus offices locations contact information",
-    "contact": "campus offices locations contact information",
+    "student health": "student health services campus wellness",
+    "financial aid office": "financial aid office location contact",
+    "where is the": "campus offices locations contact information",
 }
 
 def get_anchor_query(user_message: str) -> str | None:
-    # check if the message matches a known common question
+    # match on phrases first (more specific), then fall back to single keywords
     msg_lower = user_message.lower()
-    for keyword, anchor in ANCHOR_QUERIES.items():
-        if keyword in msg_lower:
+    for phrase, anchor in ANCHOR_QUERIES.items():
+        if phrase in msg_lower:
             return anchor
     return None
 
 def clean_history(history: list) -> list:
-    # strip out tool call stuff from old turns, just keep the actual messages
+    # only keep plain user/assistant turns, strip tool internals
     cleaned = []
     for turn in history:
         if turn.get("role") in ("user", "assistant") and isinstance(turn.get("content"), str):
@@ -75,31 +82,35 @@ def clean_history(history: list) -> list:
     return cleaned
 
 def run_agent(user_message: str, history: list) -> dict:
-    # run corpus search directly in python — skip the first LLM call entirely
-    anchor = get_anchor_query(user_message)
-    query = anchor if anchor else user_message
-    tool_result = corpus_search(query)
-    sources = tool_result.get("results", [])
-
-    # if nothing came back, retry with the raw message
-    if not sources and anchor:
-        tool_result = corpus_search(user_message)
-        sources = tool_result.get("results", [])
-
-    # build messages with search results already baked in
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
     messages += clean_history(history[:-1])
     messages.append({"role": "user", "content": user_message})
-    messages.append({
-        "role": "system",
-        "content": f"Search results for this question:\n{json.dumps(tool_result)}"
-    })
 
-    # single LLM call to generate the answer
+    sources = []
+
+    # skip search entirely for greetings/small talk
+    if not is_greeting(user_message):
+        anchor = get_anchor_query(user_message)
+        query = anchor if anchor else user_message
+        tool_result = corpus_search(query)
+        sources = tool_result.get("results", [])
+
+        # retry with raw message if anchor gave nothing
+        if not sources and anchor:
+            tool_result = corpus_search(user_message)
+            sources = tool_result.get("results", [])
+
+        # only inject search results if we actually found something
+        if sources:
+            messages.append({
+                "role": "system",
+                "content": f"Relevant search results:\n{json.dumps(tool_result)}"
+            })
+
     response = client.chat.completions.create(
         model=MODEL,
         messages=messages,
-        max_tokens=400,
+        max_tokens=350,
     )
 
     reply = response.choices[0].message.content

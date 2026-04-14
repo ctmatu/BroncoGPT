@@ -1,4 +1,4 @@
-// supabase client setup
+// ── Supabase setup ──
 const SUPABASE_URL = "https://mknmhnzmwyksjqbkgbbs.supabase.co"
 const SUPABASE_ANON_KEY = "sb_publishable_5P1TNGaT6rkoZQxw1fz8fQ_jZFuBFSM"
 const { createClient } = supabase
@@ -55,8 +55,10 @@ function showAppGuest() {
   document.getElementById('guest-bar').style.display = 'flex'
   document.getElementById('mobile-menu-btn').style.display = 'none'
 
+  // always fully reset chat state and UI when switching to guest
   conversationHistory = []
   currentConversationId = null
+  newChat()
 }
 
 function toggleMobileSidebar() {
@@ -140,10 +142,11 @@ async function handleGoogleAuth() {
 }
 
 async function handleSignOut() {
-  await sb.auth.signOut()
+  // clear history BEFORE signing out so there's no race with onAuthStateChange
   conversationHistory = []
   currentConversationId = null
   newChat()
+  await sb.auth.signOut()
 }
 
 // ── Chat History (logged-in only) ──
