@@ -10,6 +10,7 @@ const API_SAVE   = "/chat/save"
 let conversationHistory = []
 let currentConversationId = null
 let currentUser = null
+let allConversations = []
 
 // ── Auth ──
 async function init() {
@@ -160,6 +161,7 @@ async function loadConversations() {
 }
 
 function renderConversations(convs) {
+  allConversations = convs
   const container = document.getElementById('chatHistory')
   container.innerHTML = ''
   convs.forEach(conv => {
@@ -203,7 +205,6 @@ async function loadConversation(id, title) {
   })
 
   document.querySelectorAll('.history-item').forEach(i => i.classList.remove('active'))
-  event.currentTarget.classList.add('active')
 }
 
 function formatTime(ts) {
@@ -571,6 +572,32 @@ function toggleVoice() {
 
   recognition.start()
 }
+
+document.getElementById('search-input').addEventListener('input', (e) => {
+  const query = e.target.value.toLowerCase().trim()
+  const container = document.getElementById('search-results')
+
+  if (!query) {
+    container.innerHTML = ''
+    return
+  }
+
+  const filtered = allConversations.filter(c =>
+    c.title.toLowerCase().includes(query)
+  )
+
+  if (filtered.length === 0) {
+    container.innerHTML = `<div style="padding:16px;color:var(--text-muted);font-size:14px;text-align:center;">No conversations found</div>`
+    return
+  }
+
+  container.innerHTML = filtered.map(c => `
+    <div class="history-item" onclick="loadConversation('${c.id}', '${c.title}'); closeSearch()" style="padding:12px 14px;">
+      <div class="history-title" style="color:var(--text)">${c.title}</div>
+      <div class="history-time" style="color:var(--text-muted)">${formatTime(c.created_at)}</div>
+    </div>
+  `).join('')
+})
 
 // ── Start ──
 init()
