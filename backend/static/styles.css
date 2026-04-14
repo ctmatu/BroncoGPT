@@ -395,14 +395,50 @@ body {
 .msg-time { font-size: 11px; color: var(--text-faint); margin-top: 4px; padding: 0 4px; }
 .message-row.user .msg-time { text-align: right; }
 
-/* Source attribution */
-.source-link {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-size: 12px; color: var(--green-mid);
-  text-decoration: none; margin-top: 6px; padding: 0 4px;
-  transition: color 0.15s;
+/* ── Source pills ── */
+.source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 0 2px;
 }
-.source-link:hover { color: var(--green); }
+
+.source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px 4px 8px;
+  background: var(--green-light);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--green);
+  text-decoration: none;
+  transition: all 0.15s ease;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.source-link span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.source-link svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.source-link:hover {
+  background: var(--bg);
+  border-color: var(--green-mid);
+  color: var(--green);
+  box-shadow: 0 1px 4px rgba(0,95,52,0.12);
+}
 
 /* Typing */
 .typing-indicator { display: flex; gap: 10px; animation: fadeUp 0.2s ease; }

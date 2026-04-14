@@ -4,7 +4,8 @@ const SUPABASE_ANON_KEY = "sb_publishable_5P1TNGaT6rkoZQxw1fz8fQ_jZFuBFSM"
 const { createClient } = supabase
 const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
-const API_URL = "/chat"
+const API_STREAM = "/chat/stream"
+const API_SAVE   = "/chat/save"
 
 let conversationHistory = []
 let currentConversationId = null
@@ -53,7 +54,6 @@ function showAppGuest() {
   document.getElementById('guest-bar').style.display = 'flex'
   document.getElementById('mobile-menu-btn').style.display = 'none'
 
-  // always fully reset chat state and UI when switching to guest
   conversationHistory = []
   currentConversationId = null
   newChat()
@@ -140,7 +140,6 @@ async function handleGoogleAuth() {
 }
 
 async function handleSignOut() {
-  // clear history BEFORE signing out so there's no race with onAuthStateChange
   conversationHistory = []
   currentConversationId = null
   newChat()
@@ -197,9 +196,7 @@ async function loadConversation(id, title) {
     } else {
       addAIMessage({
         text: msg.content,
-        source: msg.sources && msg.sources.length > 0
-          ? { title: msg.sources[0].title, url: msg.sources[0].url }
-          : null
+        sources: msg.sources && msg.sources.length > 0 ? msg.sources : [],
       }, false)
     }
     conversationHistory.push({ role: msg.role, content: msg.content })
@@ -218,7 +215,7 @@ function formatTime(ts) {
   return date.toLocaleDateString([], { month: 'short', day: 'numeric' })
 }
 
-// ── Chat UI ──
+// ── Chat UI helpers ──
 function getTime() {
   return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
 }
@@ -258,38 +255,92 @@ function addUserMessage(msg, scroll = true) {
   if (scroll) messages.scrollTop = messages.scrollHeight
 }
 
-function addAIMessage(response, scroll = true) {
+/**
+ * Creates the AI message bubble and returns a handle for streaming updates.
+ */
+function createAIMessageBubble() {
   const messages = document.getElementById('messages')
-  const isNotFound = response.source === null
   const aiRow = document.createElement('div')
-  aiRow.className = `message-row ai${isNotFound ? ' not-found' : ''}`
+  aiRow.className = 'message-row ai'
 
-  const formatted = response.text
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n/g, '<br>')
+  const bubbleDiv = document.createElement('div')
+  bubbleDiv.className = 'bubble'
 
-  aiRow.innerHTML = `
-    <div class="msg-avatar ai">
-      <img src="/static/cpp-logo.png" style="width:20px;height:20px;border-radius:50%;">
-    </div>
-    <div class="bubble-wrap">
-      <div class="bubble">${formatted}</div>
-      ${response.source
-        ? `<a class="source-link" href="${response.source.url}" target="_blank">
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  const wrapDiv = document.createElement('div')
+  wrapDiv.className = 'bubble-wrap'
+  wrapDiv.appendChild(bubbleDiv)
+
+  const avatarDiv = document.createElement('div')
+  avatarDiv.className = 'msg-avatar ai'
+  avatarDiv.innerHTML = `<img src="/static/cpp-logo.png" style="width:20px;height:20px;border-radius:50%;">`
+
+  aiRow.appendChild(avatarDiv)
+  aiRow.appendChild(wrapDiv)
+  messages.appendChild(aiRow)
+  messages.scrollTop = messages.scrollHeight
+
+  return {
+    appendToken(text) {
+      bubbleDiv.dataset.raw = (bubbleDiv.dataset.raw || '') + text
+      bubbleDiv.innerHTML = formatText(bubbleDiv.dataset.raw)
+      messages.scrollTop = messages.scrollHeight
+    },
+
+    finalize(allSources = []) {
+      // ── Source pills ──
+      if (allSources.length > 0) {
+        const sourceWrap = document.createElement('div')
+        sourceWrap.className = 'source-links'
+
+        allSources.slice(0, 3).forEach(src => {
+          if (!src || !src.url) return
+          const link = document.createElement('a')
+          link.className = 'source-link'
+          link.href = src.url
+          link.target = '_blank'
+          link.rel = 'noopener noreferrer'
+          link.innerHTML = `
+            <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
             </svg>
-            ${response.source.title}
-           </a>`
-        : `<div class="not-found-hint">Try visiting <a href="https://www.cpp.edu" target="_blank">cpp.edu</a> directly or contact the admissions office.</div>`
-      }
-      <div class="msg-time">${getTime()}</div>
-    </div>
-  `
+            <span>${src.title || src.url}</span>
+          `
+          sourceWrap.appendChild(link)
+        })
 
-  messages.appendChild(aiRow)
-  if (scroll) messages.scrollTop = messages.scrollHeight
+        wrapDiv.appendChild(sourceWrap)
+      } else {
+        const hint = document.createElement('div')
+        hint.className = 'not-found-hint'
+        hint.innerHTML = `Try visiting <a href="https://www.cpp.edu" target="_blank">cpp.edu</a> directly or contact the admissions office.`
+        wrapDiv.appendChild(hint)
+      }
+
+      // ── Timestamp ──
+      const timeDiv = document.createElement('div')
+      timeDiv.className = 'msg-time'
+      timeDiv.textContent = getTime()
+      wrapDiv.appendChild(timeDiv)
+    }
+  }
+}
+
+// Used when replaying history (full text at once)
+function addAIMessage(response, scroll = true) {
+  const bubble = createAIMessageBubble()
+  bubble.appendToken(response.text)
+  bubble.finalize(response.sources || [])
+  if (scroll) {
+    const messages = document.getElementById('messages')
+    messages.scrollTop = messages.scrollHeight
+  }
+}
+
+function formatText(text) {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>')
 }
 
 function showTyping() {
@@ -312,10 +363,12 @@ function hideTyping() {
   if (el) el.remove()
 }
 
+// ── Core send + stream handler ────────────────────────────────────────────────
+
 async function handleSend() {
   const input = document.getElementById('user-input')
-  const btn = document.getElementById('send-btn')
-  const msg = input.value.trim()
+  const btn   = document.getElementById('send-btn')
+  const msg   = input.value.trim()
   if (!msg) return
 
   input.value = ''
@@ -327,46 +380,101 @@ async function handleSend() {
   conversationHistory.push({ role: 'user', content: msg })
 
   const { data: { session } } = await sb.auth.getSession()
+  const authHeader = session ? { 'Authorization': `Bearer ${session.access_token}` } : {}
 
-  let response
+  let fullReply = ''
+  let sources   = []
+  let bubble    = null
+
   try {
-    const res = await fetch(API_URL, {
+    const res = await fetch(API_STREAM, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...(session ? { 'Authorization': `Bearer ${session.access_token}` } : {})
-      },
+      headers: { 'Content-Type': 'application/json', ...authHeader },
       body: JSON.stringify({
         message: msg,
         history: conversationHistory,
-        conversation_id: currentConversationId
-      })
+        conversation_id: currentConversationId,
+      }),
     })
-    const data = await res.json()
-    const replyText = data.reply || "Sorry, I couldn't get a response."
 
-    conversationHistory.push({ role: 'assistant', content: replyText })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
 
-    if (data.conversation_id && !currentConversationId) {
-      currentConversationId = data.conversation_id
-      if (currentUser) loadConversations()
+    const reader  = res.body.getReader()
+    const decoder = new TextDecoder()
+    let   buffer  = ''
+
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+
+      buffer += decoder.decode(value, { stream: true })
+
+      const parts = buffer.split('\n\n')
+      buffer = parts.pop()
+
+      for (const part of parts) {
+        const line = part.trim()
+        if (!line.startsWith('data:')) continue
+        const json = line.slice(5).trim()
+        let ev
+        try { ev = JSON.parse(json) } catch { continue }
+
+        if (ev.type === 'sources') {
+          sources = ev.sources || []
+          hideTyping()
+          bubble = createAIMessageBubble()
+
+        } else if (ev.type === 'token') {
+          fullReply += ev.text
+          if (bubble) bubble.appendToken(ev.text)
+
+        } else if (ev.type === 'done') {
+          // Pass ALL sources to finalize so all pills are shown
+          if (bubble) bubble.finalize(sources)
+
+        } else if (ev.type === 'error') {
+          hideTyping()
+          if (!bubble) bubble = createAIMessageBubble()
+          bubble.appendToken('Sorry, something went wrong. Please try again.')
+          bubble.finalize([])
+        }
+      }
     }
 
-    response = {
-      text: replyText,
-      source: data.sources && data.sources.length > 0
-        ? { title: data.sources[0].title, url: data.sources[0].url }
-        : null
-    }
   } catch (err) {
-    response = {
-      text: "Could not connect to the server. Please try again.",
-      source: null
-    }
+    hideTyping()
+    if (!bubble) bubble = createAIMessageBubble()
+    bubble.appendToken('Could not connect to the server. Please try again.')
+    bubble.finalize([])
+    fullReply = ''
   }
 
-  hideTyping()
-  addAIMessage(response)
+  if (fullReply) {
+    conversationHistory.push({ role: 'assistant', content: fullReply })
+  }
+
+  // Persist to DB (fire-and-forget for logged-in users)
+  if (fullReply && session) {
+    fetch(API_SAVE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...authHeader },
+      body: JSON.stringify({
+        message: msg,
+        reply: fullReply,
+        sources,
+        conversation_id: currentConversationId,
+      }),
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.conversation_id && !currentConversationId) {
+        currentConversationId = data.conversation_id
+        loadConversations()
+      }
+    })
+    .catch(() => {})
+  }
+
   btn.disabled = false
   input.focus()
 }
@@ -430,7 +538,6 @@ function toggleVoice() {
     return
   }
 
-  // safari needs a fresh instance created inside the click handler
   const recognition = new SpeechRecognition()
   recognition.continuous = false
   recognition.interimResults = true
@@ -464,5 +571,6 @@ function toggleVoice() {
 
   recognition.start()
 }
+
 // ── Start ──
 init()

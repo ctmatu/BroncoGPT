@@ -1,7 +1,8 @@
 fastapi
 uvicorn
-openai
+google-genai
 python-dotenv
 pydantic
 aiofiles
 supabase
+rank-bm25

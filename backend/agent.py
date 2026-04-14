@@ -1,117 +1,175 @@
 import os
 import json
-from openai import OpenAI
+import random
+from typing import Generator
+from groq import Groq
 from dotenv import load_dotenv
-from tools import corpus_search
+from tools import corpus_search, clean_query, tokenize
 
 load_dotenv()
 
-client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=os.environ["OPENROUTER_API_KEY"]
-)
+client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
-MODEL = "openrouter/auto"
+MODEL = "llama-3.3-70b-versatile"
 
-SYSTEM_PROMPT = """You are BroncoAI, the official AI assistant for Cal Poly Pomona (CPP).
-Your job is to help students find accurate, helpful information about the university.
-
-Rules:
-- If the user is just greeting you or making small talk, respond naturally and briefly. Do NOT search for anything.
-- For questions about CPP, base your answers only on the search results provided in the context.
-- Do not make up information. If search results have nothing useful, say so and suggest cpp.edu or the relevant office.
-- Be friendly and concise. Keep responses under 120 words.
-- For broad questions (like "what majors are offered?"), summarize by college/department with 1-2 examples each, then link to cpp.edu for the full list. Do not enumerate every single major.
-- Mention the source page when citing specific information.
-- Always respond in the same language the user is writing in. Default to English if uncertain.
-- If you cannot confidently respond in the user's language, use English instead.
+SYSTEM_PROMPT = """You are BroncoAI, the AI assistant for Cal Poly Pomona (CPP).
+Help students find information about CPP. Be friendly, brief, and accurate.
+- For greetings or small talk: reply briefly, do not mention CPP topics unless asked.
+- For CPP questions: answer using only the search results provided. Do not invent info.
+- Keep all responses under 150 words.
+- For broad list questions (majors, programs): group by college with 1-2 examples, mention cpp.edu.
+- If no search results are useful: say you couldn't find it and suggest cpp.edu or the relevant office.
+- Do NOT add citation markers, "(Source: ...)", footnotes, or numbered references in your reply. Sources are shown separately by the UI.
+- Reply in the same language the user writes in. Default to English if unsure.
+- Never output raw JSON or search result objects. Always summarize in plain language.
 """
 
-# greetings that should skip corpus search entirely
 GREETINGS = {
     "hi", "hello", "hey", "hiya", "howdy", "sup", "what's up", "whats up",
     "good morning", "good afternoon", "good evening", "hola", "bonjour",
-    "yo", "greetings", "hi there", "hello there", "hey there"
+    "yo", "greetings", "hi there", "hello there", "hey there", "how are you",
+    "how r u", "how are u",
 }
+
+GREETING_REPLIES = [
+    "Hey! I'm BroncoAI, your CPP assistant. What can I help you with today?",
+    "Hi there! I'm BroncoAI. Got a question about Cal Poly Pomona? Ask away!",
+    "Hello! Happy to help with anything CPP-related. What's on your mind?",
+]
+
 
 def is_greeting(message: str) -> bool:
-    # check if the message is just a greeting with no real question
     cleaned = message.lower().strip().rstrip("!.,?")
-    return cleaned in GREETINGS or len(cleaned.split()) <= 2 and any(g in cleaned for g in GREETINGS)
+    if cleaned in GREETINGS:
+        return True
+    words = cleaned.split()
+    return len(words) <= 3 and words[0] in GREETINGS
 
-# anchor queries for common questions
-ANCHOR_QUERIES = {
-    "application deadline": "admissions application deadline dates",
-    "when to apply": "admissions application deadline dates",
-    "how to apply": "admissions application deadline dates",
-    "what majors": "cpp majors programs degrees colleges",
-    "majors offered": "cpp majors programs degrees colleges",
-    "what degrees": "cpp majors programs degrees colleges",
-    "financial aid": "financial aid scholarships grants office",
-    "scholarship": "financial aid scholarships grants office",
-    "dining": "on campus dining food restaurants meal plan",
-    "dining options": "on campus dining food restaurants meal plan",
-    "campus food": "on campus dining food restaurants meal plan",
-    "student housing": "student housing residence halls on campus living",
-    "residence hall": "student housing residence halls on campus living",
-    "dorm": "student housing residence halls on campus living",
-    "transfer": "transfer admissions requirements credits",
-    "tuition": "tuition fees cost of attendance",
-    "parking": "parking permits campus transportation",
-    "library": "robert e kennedy library hours resources",
-    "gym": "recreation center fitness campus",
-    "student health": "student health services campus wellness",
-    "financial aid office": "financial aid office location contact",
-    "where is the": "campus offices locations contact information",
-}
-
-def get_anchor_query(user_message: str) -> str | None:
-    # match on phrases first (more specific), then fall back to single keywords
-    msg_lower = user_message.lower()
-    for phrase, anchor in ANCHOR_QUERIES.items():
-        if phrase in msg_lower:
-            return anchor
-    return None
 
 def clean_history(history: list) -> list:
-    # only keep plain user/assistant turns, strip tool internals
-    cleaned = []
-    for turn in history:
-        if turn.get("role") in ("user", "assistant") and isinstance(turn.get("content"), str):
-            cleaned.append({"role": turn["role"], "content": turn["content"]})
+    cleaned = [
+        {"role": t["role"], "content": t["content"]}
+        for t in history
+        if t.get("role") in ("user", "assistant") and isinstance(t.get("content"), str)
+    ]
+    return cleaned[-6:]
+
+
+# ── Retrieval query builder ───────────────────────────────────────────────────
+
+def _extract_topic(prior_history: list, min_tokens: int = 2) -> str:
+    """
+    Walk backwards through all prior USER messages and return the tokens from
+    the first one that has enough substantive content (>= min_tokens meaningful
+    words after stop-word removal).
+
+    Handles multi-hop follow-up chains correctly:
+      Turn 1 user: "where is the financial aid office"  -> topic: "financial aid"
+      Turn 2 user: "how can I contact them?"            -> short -> looks back -> "financial aid"
+      Turn 3 user: "can you find their phone number?"   -> short -> looks back -> "financial aid"
+
+    Scanning ALL prior user turns (not just the immediately preceding one)
+    means we always recover the original substantive topic, no matter how deep
+    the follow-up chain goes.
+    """
+    for msg in reversed(prior_history):
+        if msg.get("role") != "user":
+            continue
+        tokens = tokenize(clean_query(msg["content"]))
+        if len(tokens) >= min_tokens:
+            return " ".join(tokens[:6])  # cap at 6 tokens to stay focused
+    return ""
+
+
+def build_retrieval_query(user_message: str, history: list) -> str:
+    """
+    Build a BM25 query from the current message.
+
+    For short follow-ups (4 or fewer meaningful tokens after stop-word removal)
+    prepend the topic recovered by scanning all prior user turns so BM25 always
+    has enough signal, even several hops deep into a thread.
+
+    history always includes the current message as its last entry; we exclude
+    it before looking backwards so we never double-count it.
+    """
+    cleaned = clean_query(user_message)
+    tokens = tokenize(cleaned)
+
+    if len(tokens) <= 4:
+        prior_history = history[:-1]           # exclude current message
+        topic = _extract_topic(prior_history)  # scan ALL prior user turns
+        combined = f"{topic} {cleaned}".strip() if topic else cleaned
+        return combined
+
     return cleaned
 
-def run_agent(user_message: str, history: list) -> dict:
+
+def format_results(results: list) -> str:
+    if not results:
+        return ""
+    parts = []
+    for i, r in enumerate(results, 1):
+        parts.append(f"[{i}] {r['title']}\nURL: {r['url']}\n{r['snippet']}")
+    return "\n\n".join(parts)
+
+
+def _build_messages(user_message: str, history: list) -> tuple[list, list]:
+    print(f"[DEBUG] history length: {len(history)}")
+    print(f"[DEBUG] retrieval query: {build_retrieval_query(user_message, history)}")
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
     messages += clean_history(history[:-1])
-    messages.append({"role": "user", "content": user_message})
 
-    sources = []
+    retrieval_query = build_retrieval_query(user_message, history)
+    tool_result = corpus_search(retrieval_query)
+    sources = tool_result.get("results", [])
 
-    # skip search entirely for greetings/small talk
-    if not is_greeting(user_message):
-        anchor = get_anchor_query(user_message)
-        query = anchor if anchor else user_message
-        tool_result = corpus_search(query)
-        sources = tool_result.get("results", [])
+    user_turn = user_message
+    if sources:
+        user_turn = f"Search results:\n{format_results(sources)}\n\nUser question: {user_message}"
 
-        # retry with raw message if anchor gave nothing
-        if not sources and anchor:
-            tool_result = corpus_search(user_message)
-            sources = tool_result.get("results", [])
+    messages.append({"role": "user", "content": user_turn})
+    return messages, sources
 
-        # only inject search results if we actually found something
-        if sources:
-            messages.append({
-                "role": "system",
-                "content": f"Relevant search results:\n{json.dumps(tool_result)}"
-            })
 
+def run_agent(user_message: str, history: list) -> dict:
+    if is_greeting(user_message):
+        return {"reply": random.choice(GREETING_REPLIES), "sources": []}
+
+    messages, sources = _build_messages(user_message, history)
     response = client.chat.completions.create(
         model=MODEL,
         messages=messages,
         max_tokens=350,
     )
+    return {"reply": response.choices[0].message.content, "sources": sources}
 
-    reply = response.choices[0].message.content
-    return {"reply": reply, "sources": sources}
+
+def run_agent_stream(user_message: str, history: list) -> Generator[str, None, None]:
+    if is_greeting(user_message):
+        reply = random.choice(GREETING_REPLIES)
+        yield f"data: {json.dumps({'type': 'sources', 'sources': []})}\n\n"
+        yield f"data: {json.dumps({'type': 'token', 'text': reply})}\n\n"
+        yield f"data: {json.dumps({'type': 'done'})}\n\n"
+        return
+
+    try:
+        messages, sources = _build_messages(user_message, history)
+        yield f"data: {json.dumps({'type': 'sources', 'sources': sources})}\n\n"
+
+        stream = client.chat.completions.create(
+            model=MODEL,
+            messages=messages,
+            max_tokens=350,
+            stream=True,
+        )
+
+        for chunk in stream:
+            text = chunk.choices[0].delta.content
+            if text:
+                yield f"data: {json.dumps({'type': 'token', 'text': text})}\n\n"
+
+        yield f"data: {json.dumps({'type': 'done'})}\n\n"
+
+    except Exception as e:
+        print(f"[STREAM ERROR] {type(e).__name__}: {e}")
+        yield f"data: {json.dumps({'type': 'error', 'text': str(e)})}\n\n"
