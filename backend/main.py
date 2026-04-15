@@ -61,7 +61,7 @@ def root():
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "model": "openrouter/auto"}
+    return {"status": "ok", "model": "groq/llama-3.3-70b"}
 
 
 # ── Shared request/response models ───────────────────────────────────────────
@@ -83,7 +83,7 @@ class ChatResponse(BaseModel):
 
 # ── Helper: persist a completed exchange to Supabase ─────────────────────────
 
-def _save_to_db(user, req: ChatRequest, reply: str, sources: list) -> Optional[str]:
+def _save_to_db(user, req, reply: str, sources: list) -> Optional[str]:
     """Saves user + assistant messages. Returns the conversation_id."""
     conversation_id = req.conversation_id
 
@@ -137,14 +137,7 @@ def chat(req: ChatRequest, request: Request):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# ── POST /chat/stream — streaming SSE endpoint ────────────────────────────────
-#
-# The frontend connects here. Events arrive as SSE:
-#   data: {"type": "sources", "sources": [...]}
-#   data: {"type": "token",   "text": "..."}
-#   data: {"type": "done"}
-#
-# After "done", the frontend POSTs to /chat/save to persist the exchange.
+# ── POST /chat/stream ─────────────────────────────────────────────────────────
 
 @app.post("/chat/stream")
 def chat_stream(req: ChatRequest, request: Request):
@@ -157,16 +150,13 @@ def chat_stream(req: ChatRequest, request: Request):
         run_agent_stream(req.message, history),
         media_type="text/event-stream",
         headers={
-            # Prevent proxies / nginx from buffering the stream
             "X-Accel-Buffering": "no",
             "Cache-Control": "no-cache",
         },
     )
 
 
-# ── POST /chat/save — called by frontend after stream completes ───────────────
-#
-# Receives the fully assembled reply + sources so we can persist to Supabase.
+# ── POST /chat/save ───────────────────────────────────────────────────────────
 
 class SaveRequest(BaseModel):
     message: str
@@ -184,7 +174,6 @@ def chat_save(req: SaveRequest, request: Request):
         return SaveResponse(conversation_id=req.conversation_id)
 
     try:
-        # Reuse the save helper — wrap into ChatRequest-compatible shape
         class _Req:
             message = req.message
             conversation_id = req.conversation_id
@@ -221,3 +210,23 @@ def get_messages(conversation_id: str, request: Request):
         .order("created_at")\
         .execute()
     return msgs.data
+
+
+# ── DELETE /conversations/{conversation_id} ───────────────────────────────────
+
+@app.delete("/conversations/{conversation_id}")
+def delete_conversation(conversation_id: str, request: Request):
+    user = get_current_user(request)
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+
+    # Delete messages first (foreign key constraint), then the conversation
+    supabase.table("messages").delete()\
+        .eq("conversation_id", conversation_id)\
+        .execute()
+    supabase.table("conversations").delete()\
+        .eq("id", conversation_id)\
+        .eq("user_id", str(user.id))\
+        .execute()
+
+    return {"success": True}

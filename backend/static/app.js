@@ -147,7 +147,7 @@ async function handleSignOut() {
   await sb.auth.signOut()
 }
 
-// ── Chat History (logged-in only) ──
+// ── Chat History ──
 async function loadConversations() {
   const { data: { session } } = await sb.auth.getSession()
   if (!session) return
@@ -164,16 +164,52 @@ function renderConversations(convs) {
   allConversations = convs
   const container = document.getElementById('chatHistory')
   container.innerHTML = ''
+
   convs.forEach(conv => {
     const item = document.createElement('div')
     item.className = 'history-item' + (conv.id === currentConversationId ? ' active' : '')
-    item.innerHTML = `
+
+    const content = document.createElement('div')
+    content.className = 'history-item-content'
+    content.innerHTML = `
       <div class="history-title">${conv.title || 'Untitled'}</div>
       <div class="history-time">${formatTime(conv.created_at)}</div>
     `
-    item.onclick = () => loadConversation(conv.id, conv.title)
+    content.onclick = () => loadConversation(conv.id, conv.title)
+
+    const deleteBtn = document.createElement('button')
+    deleteBtn.className = 'delete-chat-btn'
+    deleteBtn.title = 'Delete chat'
+    deleteBtn.innerHTML = `
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <polyline points="3 6 5 6 21 6"/>
+        <path d="M19 6l-1 14H6L5 6"/>
+        <path d="M10 11v6M14 11v6"/>
+        <path d="M9 6V4h6v2"/>
+      </svg>
+    `
+    deleteBtn.addEventListener('click', (e) => deleteConversation(e, conv.id))
+
+    item.appendChild(content)
+    item.appendChild(deleteBtn)
     container.appendChild(item)
   })
+}
+
+async function deleteConversation(e, id) {
+  e.stopPropagation()
+  if (!confirm('Delete this chat?')) return
+
+  const { data: { session } } = await sb.auth.getSession()
+  if (!session) return
+
+  await fetch(`/conversations/${id}`, {
+    method: 'DELETE',
+    headers: { 'Authorization': `Bearer ${session.access_token}` }
+  })
+
+  if (currentConversationId === id) newChat()
+  loadConversations()
 }
 
 async function loadConversation(id, title) {
@@ -205,6 +241,14 @@ async function loadConversation(id, title) {
   })
 
   document.querySelectorAll('.history-item').forEach(i => i.classList.remove('active'))
+  document.querySelectorAll('.history-item').forEach(i => {
+    const content = i.querySelector('.history-item-content')
+    if (content && content.onclick) {
+      // mark the active one
+    }
+  })
+  // re-render to update active state
+  loadConversations()
 }
 
 function formatTime(ts) {
@@ -256,9 +300,6 @@ function addUserMessage(msg, scroll = true) {
   if (scroll) messages.scrollTop = messages.scrollHeight
 }
 
-/**
- * Creates the AI message bubble and returns a handle for streaming updates.
- */
 function createAIMessageBubble() {
   const messages = document.getElementById('messages')
   const aiRow = document.createElement('div')
@@ -288,7 +329,6 @@ function createAIMessageBubble() {
     },
 
     finalize(allSources = []) {
-      // ── Source pills ──
       if (allSources.length > 0) {
         const sourceWrap = document.createElement('div')
         sourceWrap.className = 'source-links'
@@ -318,7 +358,6 @@ function createAIMessageBubble() {
         wrapDiv.appendChild(hint)
       }
 
-      // ── Timestamp ──
       const timeDiv = document.createElement('div')
       timeDiv.className = 'msg-time'
       timeDiv.textContent = getTime()
@@ -327,7 +366,6 @@ function createAIMessageBubble() {
   }
 }
 
-// Used when replaying history (full text at once)
 function addAIMessage(response, scroll = true) {
   const bubble = createAIMessageBubble()
   bubble.appendToken(response.text)
@@ -430,7 +468,6 @@ async function handleSend() {
           if (bubble) bubble.appendToken(ev.text)
 
         } else if (ev.type === 'done') {
-          // Pass ALL sources to finalize so all pills are shown
           if (bubble) bubble.finalize(sources)
 
         } else if (ev.type === 'error') {
@@ -454,7 +491,6 @@ async function handleSend() {
     conversationHistory.push({ role: 'assistant', content: fullReply })
   }
 
-  // Persist to DB (fire-and-forget for logged-in users)
   if (fullReply && session) {
     fetch(API_SAVE, {
       method: 'POST',
@@ -593,8 +629,10 @@ document.getElementById('search-input').addEventListener('input', (e) => {
 
   container.innerHTML = filtered.map(c => `
     <div class="history-item" onclick="loadConversation('${c.id}', '${c.title}'); closeSearch()" style="padding:12px 14px;">
-      <div class="history-title" style="color:var(--text)">${c.title}</div>
-      <div class="history-time" style="color:var(--text-muted)">${formatTime(c.created_at)}</div>
+      <div class="history-item-content">
+        <div class="history-title" style="color:var(--text)">${c.title}</div>
+        <div class="history-time" style="color:var(--text-muted)">${formatTime(c.created_at)}</div>
+      </div>
     </div>
   `).join('')
 })
